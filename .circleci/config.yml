@@ -114,6 +114,7 @@ jobs:
             # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
             npm audit fix --force
             npm audit --audit-level=critical
+            npm audit fix
   scan-backend:
     docker:
        - image: circleci/node:13.8.0
@@ -131,6 +132,7 @@ jobs:
             # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
             npm audit fix --force
             npm audit --audit-level=critical
+            npm audit fix
 #  deploy-infrastructure:
 #    docker:
       # Docker image here that supports AWS CLI
