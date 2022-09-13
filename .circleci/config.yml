@@ -111,7 +111,8 @@ jobs:
             npm install
             # npm install oauth-sign@^0.9.0
             npm audit --audit-level=critical
-
+            # Do not use the --force option along with the command below in your local
+            npm audit fix --audit-level=critical
   scan-backend:
     docker:
        - image: circleci/node:13.8.0
@@ -126,7 +127,8 @@ jobs:
             npm install
             # npm install oauth-sign@^0.9.0
             npm audit --audit-level=critical
-
+            # Do not use the --force option along with the command below in your local
+            npm audit fix --audit-level=critical
 #  deploy-infrastructure:
 #    docker:
       # Docker image here that supports AWS CLI
