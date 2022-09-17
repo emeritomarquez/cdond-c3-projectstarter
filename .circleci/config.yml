@@ -4,6 +4,27 @@ orbs:
   slack: circleci/slack@4.9.3
 
 commands:
+
+  trigger_slack_notification:
+    steps:
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event:always
+  
 #  destroy-environment:
 #    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
 #    parameters:
@@ -52,6 +73,8 @@ jobs:
             npm audit fix
             npm audit fix --force
 #            exit 1
+      - notify_slack_error
+      - notify_slack_pass
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -72,6 +95,8 @@ jobs:
             npm audit fix
             npm audit fix --force
             exit 1
+      - notify_slack_error
+      - notify_slack_pass
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
@@ -140,18 +165,6 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
-
-  notify:
-    docker:
-      - image: 'cimg/base:stable'
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - slack/notify:
-          channel: 'circleci-udapeople'
-          event: fail
-          template: basic_fail_1
 
 #  deploy-infrastructure:
 #    docker:
@@ -322,8 +335,6 @@ jobs:
 workflows:
   default:
     jobs:
-      - notify:
-          context: slack-secrets
       - build-frontend
       - build-backend
       - test-frontend:
