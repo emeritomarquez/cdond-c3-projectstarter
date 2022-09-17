@@ -5,6 +5,27 @@ version: 2.1
 
 commands:
 
+  trigger_slack_notification:
+    steps:
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
+
+
 #  notify_slack_error:
 #    steps:
 #      - slack/notify:
@@ -55,6 +76,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
 #      - trigger_slack_notification
+      - trigger_slack_notification
       - checkout
       - restore_cache:
           keys: [frontend-build]
@@ -79,6 +101,7 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
+      - trigger_slack_notification
       - checkout
       - restore_cache:
           keys: [backend-build]
