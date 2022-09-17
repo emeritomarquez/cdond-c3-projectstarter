@@ -72,7 +72,7 @@ jobs:
           key: frontend-build
       - notify_slack_error:
           context: slack-secrets
-      - notify_slack_pass
+      - notify_slack_pass:
           context: slack-secrets
 
   build-backend:
