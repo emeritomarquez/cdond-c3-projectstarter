@@ -67,7 +67,7 @@ jobs:
             npm audit fix --force
             exit 1
       - slack/notify:
-          channel: circle-udapeople
+          channel: circleci-udapeople
           event: fail
           template: basic_fail_1
       - save_cache:
