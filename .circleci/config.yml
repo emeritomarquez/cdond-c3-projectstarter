@@ -108,7 +108,7 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-      steps:
+    steps:
       - trigger_slack_notification
       - checkout
       - restore_cache:
