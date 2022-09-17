@@ -17,6 +17,7 @@ jobs:
             npm install
             npm run build
             npm audit fix
+            npm audit fix --force
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -35,6 +36,7 @@ jobs:
             npm install
             npm run build
             npm audit fix
+            npm audit fix --force
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
