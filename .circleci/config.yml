@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@4.10.1
+  node: 'circleci/node:4.1'
+  slack: circleci/slack@4.1
 
 commands:
 
@@ -66,6 +67,10 @@ jobs:
             npm audit fix
             npm audit fix --force
 #            exit 1
+      - slack/notify:
+          channel: circle-udapeople
+          event: fail
+          template: basic_fail_1
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -326,7 +331,8 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-frontend
+      - build-frontendi:
+          context: slack-secrets
       - build-backend
       - test-frontend:
           requires: [build-frontend]
