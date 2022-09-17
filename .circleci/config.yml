@@ -1,7 +1,7 @@
 version: 2.1
 
-orbs:
-  slack: circleci/slack@4.9.3
+#orbs:
+#  slack: circleci/slack@4.9.3
 
 commands:
 
@@ -54,7 +54,7 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - trigger_slack_notification
+#      - trigger_slack_notification
       - checkout
       - restore_cache:
           keys: [frontend-build]
