@@ -149,6 +149,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - slack/notify:
+          channel: 'circleci-udapeople'
           event: fail
           template: basic_fail_1
 
