@@ -73,8 +73,12 @@ commands:
 jobs:
   build-frontend:
     docker:
-      - image: circleci/node:13.8.0
-    steps:
+#      - image: circleci/node:13.8.0
+       image: 'cimg/base:stable'
+          auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      steps:
 #      - trigger_slack_notification
       - trigger_slack_notification
       - checkout
@@ -99,8 +103,12 @@ jobs:
 
   build-backend:
     docker:
-      - image: circleci/node:13.8.0
-    steps:
+#      - image: circleci/node:13.8.0
+       image: 'cimg/base:stable'
+          auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      steps:
       - trigger_slack_notification
       - checkout
       - restore_cache:
