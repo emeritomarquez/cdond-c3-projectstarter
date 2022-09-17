@@ -318,17 +318,14 @@ jobs:
               # your code here
 #            fi
             
-
 workflows:
   default:
     jobs:
       - build-frontend
       - notify:
-          requires:  [build-frontend]
           context: slack-secrets
       - build-backend
       - notify:
-          requires:  [build-backend]
           context: slack-secrets
       - test-frontend:
           requires: [build-frontend]
