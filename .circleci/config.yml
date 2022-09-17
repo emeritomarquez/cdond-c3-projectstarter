@@ -70,9 +70,9 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
-      - notify_slack_error
+#      - notify_slack_error
 #          context: slack-secrets
-      - notify_slack_pass
+#      - notify_slack_pass
 #          context: slack-secrets
 
   build-backend:
@@ -94,9 +94,9 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
-      - notify_slack_error
+#      - notify_slack_error
 #          context: slack-secrets
-      - notify_slack_pass
+#      - notify_slack_pass
 #          context: slack-secrets
   test-frontend:
     docker:
