@@ -80,7 +80,8 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
 #      - trigger_slack_notification
-      - trigger_slack_notification
+      - trigger_slack_notification:
+          context: slack-secrets
       - checkout
       - restore_cache:
           keys: [frontend-build]
@@ -109,7 +110,8 @@ jobs:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - trigger_slack_notification
+      - trigger_slack_notification:
+          context: slack-secrets
       - checkout
       - restore_cache:
           keys: [backend-build]
