@@ -17,25 +17,25 @@ commands:
           event: pass
           template: basic_success_1
 
-  trigger_slack_notification:
-    steps:
-      - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "This is a text notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always
+#  trigger_slack_notification:
+#    steps:
+#      - slack/notify:
+#          custom: |
+#            {
+#              "blocks": [
+#                {
+#                  "type": "section",
+#                  "fields": [
+#                    {
+#                      "type": "plain_text",
+#                      "text": "This is a text notification*",
+#                      "emoji": true
+#                    }
+#                  ]
+#                }
+#              ]
+#            }
+#          event: always
   
 #  destroy-environment:
 #    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
@@ -73,7 +73,7 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - trigger_slack_notification
+#      - trigger_slack_notification
       - checkout
       - restore_cache:
           keys: [frontend-build]
@@ -96,7 +96,7 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - trigger_slack_notification
+#      - trigger_slack_notification
       - checkout
       - restore_cache:
           keys: [backend-build]
