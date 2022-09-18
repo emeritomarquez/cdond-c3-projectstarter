@@ -44,8 +44,8 @@ jobs:
   test-frontend:
     docker:
       - image: circleci/node:13.8.0
-      steps:
-        - checkout
+    steps:
+      - checkout
       - restore_cache:
           keys: [frontend-test]
       - run:
