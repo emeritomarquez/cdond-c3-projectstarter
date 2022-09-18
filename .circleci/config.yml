@@ -80,7 +80,7 @@ jobs:
             cd backend
             npm install
             npm run test
-    - slack/notify:
+      - slack/notify:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
