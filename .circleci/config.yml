@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  slack: circleci/slack@4.10.1
+
 commands:
 
 jobs:
@@ -16,8 +19,11 @@ jobs:
             cd frontend
             npm install
             npm run build
-#            npm audit fix
-#            npm audit fix --force
+            exit 1
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -35,8 +41,10 @@ jobs:
             cd backend
             npm install
             npm run build
-#            npm audit fix
-#            npm audit fix --force
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
@@ -54,6 +62,10 @@ jobs:
             cd frontend
             npm install
             npm run test
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
 
   test-backend:
     docker:
@@ -68,6 +80,10 @@ jobs:
             cd backend
             npm install
             npm run test
+    - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
 
   scan-frontend:
     docker:
@@ -87,6 +103,10 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
 
   scan-backend:
     docker:
@@ -106,6 +126,10 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
 
 workflows:
   default:
