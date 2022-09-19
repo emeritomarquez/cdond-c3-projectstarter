@@ -19,7 +19,6 @@ jobs:
             cd frontend
             npm install
             npm run build
-            exit 1
       - slack/notify:
           channel: circleci-udapeople
           event: fail
@@ -80,7 +79,6 @@ jobs:
             cd backend
             npm install
             npm run test
-            exit 1
       - slack/notify:
           channel: circleci-udapeople
           event: fail
