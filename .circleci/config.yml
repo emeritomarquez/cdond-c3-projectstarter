@@ -213,6 +213,7 @@ jobs:
               --region us-west-2 \
               --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"
+# Add aws credentials to circleci project environment variables
 #             exit 1
 #      - run:
 #          name: Ensure front-end infrastructure exist
