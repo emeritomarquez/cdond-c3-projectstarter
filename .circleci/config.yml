@@ -233,9 +233,10 @@ jobs:
           command: |
             aws ec2 describe-instances \
               --query 'Reservations[*].Instances[*].PrivateIpAddress' \
-              --output text >> project/.circleci/ansible/inventory.txt
+              --output text >> ~/project/.circleci/ansible/inventory.txt
       - run: ls -al
-      - run: cat  project/.circleci/ansible/inventory.txt
+      - run: cat ~/project/.circleci/ansible/inventory.txt
+      - run: ls -al ~/
       - run: exit 1
       - persist_to_workspace:
           root: ~/
