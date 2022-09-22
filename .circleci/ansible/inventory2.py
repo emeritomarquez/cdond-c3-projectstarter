@@ -62,6 +62,6 @@ g = open(sys.argv[2], 'w+')
 element = rows[-1]
 print(element)
 g.write(element)
-print(g)
+#print(g)
 g.close()
 
