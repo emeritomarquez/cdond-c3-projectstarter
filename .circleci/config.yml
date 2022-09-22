@@ -239,7 +239,7 @@ jobs:
       - run: ls -al ~/
 #      - run: exit 1
       - run: touch ~/inventory1.txt
-      - run: python inventory2.py ~/project/.circleci/ansible/inventory.txt ~/project/.circleci/ansible/inventory1.txt
+      - run: python ~/project/.circleci/ansible/inventory2.py ~/project/.circleci/ansible/inventory.txt ~/project/.circleci/ansible/inventory1.txt
       - persist_to_workspace:
           root: ~/
           paths:
