@@ -18,16 +18,17 @@ commands:
 #          template: basic_success_1
           
 
-#  destroy-environment:
-#    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
-#    parameters:
-      # Add parameter here   
-#    steps:
-#      - run:
-#          name: Destroy environments
-#          when: on_fail
-#          command: |
-            # Your code here
+  destroy-environment:
+    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
+    parameters:
+      stackname:
+        type: string   
+    steps:
+      - run:
+          name: Destroy environments
+          when: on_fail
+          command: |
+            aws cloudformation delete-stack --stack-name  << parameters.stackname >>-${CIRCLE_WORKFLOW_ID:0:7}            
 #            exit 1
 
 #  revert-migrations:
@@ -229,11 +230,8 @@ jobs:
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  
 #              exit 1
-#      - run:
-#          name: Add back-end ip to ansible inventory
-#          command: |
       - run:
-          name: Create inventory file
+          name: Add back-end ip to ansible inventory
           command: |
             aws ec2 describe-instances \
               --query 'Reservations[*].Instances[*].PrivateIpAddress' \
@@ -249,6 +247,10 @@ jobs:
           paths:
             -  project/.circleci/ansible/inventory1.txt
       # Here's where you will add some code to rollback on failure      
+      -  destroy_environment:
+           stackname: "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}"
+      -  destroy_environment:
+           stackname: "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}"
 
 #  configure-infrastructure:
 #    docker:

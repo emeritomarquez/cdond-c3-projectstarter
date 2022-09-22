@@ -63,4 +63,3 @@ element = rows[-1]
 print("" + element + '\n')
 g.write(element)
 g.close()
-print(g)
