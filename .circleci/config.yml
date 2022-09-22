@@ -247,10 +247,10 @@ jobs:
           paths:
             -  project/.circleci/ansible/inventory1.txt
       # Here's where you will add some code to rollback on failure      
-      -  destroy_environment:
-           stackname: "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}"
-      -  destroy_environment:
-           stackname: "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}"
+      - destroy_environment:
+          stackname: "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}"
+      - destroy_environment:
+          stackname: "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}"
 
 #  configure-infrastructure:
 #    docker:
