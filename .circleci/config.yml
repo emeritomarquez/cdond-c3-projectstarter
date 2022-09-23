@@ -269,7 +269,7 @@ jobs:
       - run: cat ~/project/.circleci/ansible/inventory1.txt
       - run:
           name: Install dependencies
-          command: |
+          command: 
              # install the dependencies needed for your playbook
             apk add --update ansible
 #            exit 1
