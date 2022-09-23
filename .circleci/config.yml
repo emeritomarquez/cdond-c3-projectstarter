@@ -257,24 +257,32 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
           event: on_fail
 
-#  configure-infrastructure:
-#    docker:
-      # Docker image here that supports Ansible
-#    steps:
-      # Checkout code from git
-      # Add ssh keys with fingerprint
-      # attach workspace
-#      - run:
-#          name: Install dependencies
-#          command: |
-            # Your code here
+  configure-infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["03:d3:b7:91:9e:46:28:24:e0:d3:ff:b3:4d:49:0d:0a"]
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/project/.circleci/ansible/inventory1.txt
+      - run:
+          name: Install dependencies
+          command: |
+             # install the dependencies needed for your playbook
+            apk add --update ansible
 #            exit 1
-#      - run:
-#          name: Configure server
-#          command: |
-            # Your code here
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -v -i  ~/project/.circleci/ansible/inventory1.txt --private-key=~/project/.circleci/ansible/udapeople.pem  ~/project/.circleci/ansible/main.yml
 #            exit 1
       # Here's where you will add some code to rollback on failure      
+
+      - destroy-environment:
+          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+          event: on_fail
 
 #  run-migrations:
 #    docker:
@@ -412,8 +420,8 @@ workflows:
 #          filters:
 #            branches:
 #              only: [test-feature-branch]
-#      - configure-infrastructure:
-#          requires: [deploy-infrastructure]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
 #      - run-migrations:
 #          requires: [configure-infrastructure]
 #      - deploy-frontend:
