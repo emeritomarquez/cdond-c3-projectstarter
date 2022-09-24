@@ -262,11 +262,11 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints: ["03:d3:b7:91:9e:46:28:24:e0:d3:ff:b3:4d:49:0d:0a"]
       - attach_workspace:
           at: ~/
       - run: cat ~/project/.circleci/ansible/inventory1.txt
+      - add_ssh_keys:
+          fingerprints: ["03:d3:b7:91:9e:46:28:24:e0:d3:ff:b3:4d:49:0d:0a"]
       - run:
           name: Install dependencies
           command: 
