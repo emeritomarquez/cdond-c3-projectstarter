@@ -285,6 +285,9 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
           event: on_fail
 
+
+
+
 #  run-migrations:
 #    docker:
       # Docker image here that supports NodeJS
