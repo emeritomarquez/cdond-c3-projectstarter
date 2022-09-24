@@ -273,6 +273,7 @@ jobs:
              # install the dependencies needed for your playbook
             apk add --update ansible
 #            exit 1
+      - run: ls -al  /etc
       - run:
           name: Configure server
           command: |
