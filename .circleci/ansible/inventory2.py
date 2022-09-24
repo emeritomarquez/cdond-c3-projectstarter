@@ -7,7 +7,7 @@ lines = f.readlines()
 f.close()
 rows = []
 for line in lines:
-    if line == "[web]\n":
+    if line == "[web]":
         rows.append(line)
 #Windows AWS Work Machine
     elif line == "172.31.18.180\n":
@@ -57,9 +57,6 @@ for line in lines:
 
 print(rows)
 g = open(sys.argv[2], 'w+')
-#for element in rows:
-#    g.write(element)
-element = rows[-1]
-print("" + element + '\n')
-g.write(element)
+for element in rows:
+    g.write(element)
 g.close()
