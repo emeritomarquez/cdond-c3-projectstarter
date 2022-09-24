@@ -277,7 +277,7 @@ jobs:
           name: Configure server
           command: |
             ansible-playbook -v -i  ~/project/.circleci/ansible/inventory1.txt --private-key=~/project/.circleci/ansible/udapeople.pem  ~/project/.circleci/ansible/main.yml
-       - run: ls -al  ~/project/.circleci/ansible/
+      - run: ls -al  ~/project/.circleci/ansible/
 #            exit 1
       # Here's where you will add some code to rollback on failure      
 
