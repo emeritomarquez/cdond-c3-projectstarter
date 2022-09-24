@@ -244,8 +244,8 @@ jobs:
       - run: cat ~/project/.circleci/ansible/inventory.txt
       - run: ls -al ~/
 #      - run: exit 1
-      - run: touch ~/project/.circleci/ansible/nventory1.txt
-      - run: echo "[web]" >> ~/iproject/.circleci/ansible/nventory1.txt
+      - run: touch ~/project/.circleci/ansible/inventory1.txt
+      - run: echo "[web]" >> ~/iproject/.circleci/ansible/inventory1.txt
       - run: cat ~/project/.circleci/ansible/inventory1.txt
       - run: python ~/project/.circleci/ansible/inventory2.py ~/project/.circleci/ansible/inventory.txt ~/project/.circleci/ansible/inventory1.txt
       - run: cat ~/project/.circleci/ansible/inventory1.txt
