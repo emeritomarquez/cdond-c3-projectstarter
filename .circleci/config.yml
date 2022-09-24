@@ -25,6 +25,8 @@ commands:
       event:
         type: string
     steps:
+      - run: ls -al  ~/project/.circleci/ansible/
+      - run: ansible --version
       - run:
           name: Destroy environment << parameters.workflow_id >>
           when: << parameters.event >>
