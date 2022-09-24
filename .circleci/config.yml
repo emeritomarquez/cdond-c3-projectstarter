@@ -246,7 +246,9 @@ jobs:
 #      - run: exit 1
       - run: touch ~/inventory1.txt
       - run: echo "[web]" >> ~/inventory1.txt
+      - run: cat ~/project/.circleci/ansible/inventory1.txt
       - run: python ~/project/.circleci/ansible/inventory2.py ~/project/.circleci/ansible/inventory.txt ~/project/.circleci/ansible/inventory1.txt
+      - run: cat ~/project/.circleci/ansible/inventory1.txt
       - persist_to_workspace:
           root: ~/
           paths:
