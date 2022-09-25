@@ -277,6 +277,7 @@ jobs:
             apk add --update ansible
 #            exit 1
       - run: ls -al  /etc
+      - run: chmod 400 ~/project/.circleci/ansible/udapeople.pem
       - run:
           name: Configure server
           command: |
