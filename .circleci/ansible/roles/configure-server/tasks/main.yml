@@ -32,4 +32,5 @@
 
 - name: Install Python
   become: yes
-  raw: apt -y update && apt install -y python2-minimal python-is-python3 
+  raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
+  changed_when: false
