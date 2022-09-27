@@ -1,6 +1,6 @@
 ---
 - name: "update apt packages"
-  become: true
+  become: yes 
   #  become method: sudo
   apt:
     update_cache: yes
