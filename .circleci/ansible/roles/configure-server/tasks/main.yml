@@ -31,4 +31,5 @@
     state: present
 
 - name: Install Python
+  become: yes
   raw: apt -y update && apt install -y python-minimal
