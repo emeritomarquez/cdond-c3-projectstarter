@@ -1,0 +1,6 @@
+---
+- name: Set up nodejs, npm, pm2 and python in an EC2
+  hosts: web
+  user: ubuntu
+  roles:
+    - configure-server
