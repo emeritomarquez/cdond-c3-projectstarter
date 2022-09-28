@@ -7,7 +7,7 @@ lines = f.readlines()
 f.close()
 rows = []
 for line in lines:
-    if line == "[hosts]\n":
+    if line == "[web]":
         rows.append(line)
 #Windows AWS Work Machine
     elif line == "172.31.18.180\n":
