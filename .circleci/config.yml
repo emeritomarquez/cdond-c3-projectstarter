@@ -293,7 +293,7 @@ jobs:
     docker:
      - image: circleci/node:13.8.0 # Docker image here that supports NodeJS
     steps:
-      - git checkout   # checkout Checkout code from git
+      - checkout   # checkout Checkout code from git
       - run:
           name: Run migrations
           command: |
