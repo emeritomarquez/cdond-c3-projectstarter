@@ -57,10 +57,8 @@ for line in lines:
 #Ubuntu122.04 Public
     elif line == "34.212.37.68\n":
         pass
-
     else:
         rows.append(line)
-
 
 print(rows)
 g = open(sys.argv[2], 'w+')
