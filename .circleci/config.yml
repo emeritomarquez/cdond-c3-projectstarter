@@ -321,7 +321,6 @@ jobs:
       - run: ls -al
 
   npm-migration-errlog:
-    event: on_fail
 
 #      - run:
 #          name: Send migration status to kvdb.io OR memstash.io
