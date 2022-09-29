@@ -35,14 +35,14 @@ commands:
             aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.workflow_id >>
 #            exit 1
 
-  npm-migration-errlog:
-    description: cat npm migration error logfile
-    steps:
-      - run:
-          name: list logfile content
-          command: |
-            ls -al  ~/project/backend/
-            cat ~/project/backend/migrations_dump.txt
+#  npm-migration-errlog:
+#    description: cat npm migration error logfile
+#    steps:
+#      - run:
+#          name: list logfile content
+#          command: |
+#            ls -al  ~/project/backend/
+#            cat ~/project/backend/migrations_dump.txt
 
 #  revert-migrations:
 #    description: Revert the last migration if successfully run in the current workflow.
@@ -318,8 +318,8 @@ jobs:
             #            exit 1
       - run: ls -al
 
-  npm-migration-errlog:
-    event: on_fail
+#  npm-migration-errlog:
+#    event: on_fail
 
 #      - run:
 #          name: Send migration status to kvdb.io OR memstash.io
