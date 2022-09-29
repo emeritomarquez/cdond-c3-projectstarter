@@ -319,7 +319,7 @@ jobs:
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
             #            exit 1
 
-  npm-migration-errlog
+      - npm-migration-errlog
 
 #      - run:
 #          name: Send migration status to kvdb.io OR memstash.io
