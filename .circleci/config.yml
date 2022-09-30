@@ -44,7 +44,8 @@ commands:
           command: |
             ls -al  ~/project/backend/
             cat ~/project/.circleci/ansible/migrations_dump.txt
-#            cat ~/project/.circleci/ansible/migrations_err.txt
+            cat ~/project/.circleci/ansible/migrations_err.txt
+            python3 ~/project/.circleci/scratch-code/get_dump_files.py ~/project/.circleci/ansible/migrations_err.txt
 
 #  revert-migrations:
 #    description: Revert the last migration if successfully run in the current workflow.
