@@ -315,7 +315,7 @@ jobs:
            # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
             npm audit fix --force
 #            npm audit --audit-level=critical
-            npm audit fix
+#            npm audit fix
 #            npm cache clean --force
 #            rm -rf node_modules
 #            rm ~/project/package-lock.json
