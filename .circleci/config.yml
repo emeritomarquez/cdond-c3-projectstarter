@@ -316,6 +316,10 @@ jobs:
             npm audit --audit-level=critical
             npm audit fix
             ls -al ~/project/
+            npm cache clean --force
+            rm -rf  ~/project/backend/node_modules
+            rm package-lock.json
+            npm install
             # Run and save the migration output
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
             #            exit 1
