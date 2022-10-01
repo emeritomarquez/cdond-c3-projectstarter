@@ -306,11 +306,11 @@ jobs:
      - image: circleci/node:13.8.0 # Docker image here that supports NodeJS
     steps:
       - checkout   # checkout Checkout code from git
-#      - run:
-#          name: Run migrations
-#          command: |
-#            cd backend
-#            npm install
+      - run:
+          name: Run migrations
+          command: |
+            cd backend
+            npm install
 #            npm audit fix --audit-level=critical --force
            # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
 #            npm audit fix --force
