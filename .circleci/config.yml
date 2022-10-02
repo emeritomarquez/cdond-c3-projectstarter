@@ -320,9 +320,9 @@ jobs:
             rm -rf  ~/project/backend/node_modules
             rm ~/project/backend/package-lock.json
             rm ~/project/package-lock.json
-            npm install
-            npm audit fix
-             Run and save the migration output
+#            npm install
+#            npm audit fix
+            #Run and save the migration output
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
             #            exit 1
 
