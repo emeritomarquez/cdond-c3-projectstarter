@@ -23,6 +23,18 @@ commands:
             aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.workflow_id >>
 #            exit 1
 
+  npm-migration-errlog:
+    description: cat npm migration error logfile
+    steps:
+      - run:
+          name: list logfile content
+          when: on_fail
+          command: |
+            ls -al  ~/project/backend/
+            cat ~/project/.circleci/ansible/migrations_dump.txt
+            cat ~/project/.circleci/ansible/migrations_err.txt
+            python3 ~/project/.circleci/scratch-code/get_dump_files.py ~/project/.circleci/ansible/migrations_err.txt
+
 
 jobs:
   build-frontend:
@@ -84,6 +96,9 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-build
 
   test-backend:
     docker:
@@ -102,6 +117,9 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
+      - save_cache:
+          paths: [backend/node_modules]
+          key: backend-build
 
   scan-frontend:
     docker:
@@ -125,6 +143,9 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-build
 
   scan-backend:
     docker:
@@ -148,6 +169,9 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
+      - save_cache:
+          paths: [backend/node_modules]
+          key: backend-build
 
   deploy-infrastructure:
     docker:
@@ -232,6 +256,32 @@ jobs:
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
           event: on_fail
+
+      - destroy-environment:
+          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+          event: on_fail
+
+  run-migrations:
+    docker:
+     - image: circleci/node:13.8.0 # Docker image here that supports NodeJS
+    steps:
+      - checkout   # checkout Checkout code from git
+      - restore_cache:
+          keys: [backend-scan]
+      - run:
+          name: Run migrations
+          command: |
+            cd backend
+            npm install
+            npm audit fix --audit-level=critical --force
+            # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
+            npm audit fix --force
+            npm audit --audit-level=critical
+            npm audit fix
+            # Run and save the migration output
+            npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
+
+      - npm-migration-errlog
 
 
 workflows:
