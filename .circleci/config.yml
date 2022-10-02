@@ -49,7 +49,7 @@ jobs:
             cd frontend
             npm install
             npm run build
-<<<<<<< HEAD
+
             npm audit fix
             npm audit fix --force
 #            exit 1
@@ -57,9 +57,6 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-=======
-            exit 1
->>>>>>> 133ce8c8b2046760e9936a5bd1e2636ba2f1f77a
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
