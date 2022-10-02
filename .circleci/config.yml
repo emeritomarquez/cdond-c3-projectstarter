@@ -295,8 +295,6 @@ workflows:
           context: slack-secrets
       - build-backend:
           context: slack-secrets
-      - build-backend
-          context: slack-secrets
       - test-frontend:
           requires: [build-frontend]
           context: slack-secrets
