@@ -323,7 +323,7 @@ jobs:
 #            npm install
 #            npm audit fix
             #Run and save the migration output
-            npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
+#            npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
             #            exit 1
 
       - npm-migration-errlog
