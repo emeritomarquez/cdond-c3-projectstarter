@@ -35,7 +35,6 @@ commands:
             cat ~/project/.circleci/ansible/migrations_err.txt
             python3 ~/project/.circleci/scratch-code/get_dump_files.py ~/project/.circleci/ansible/migrations_err.txt
 
-
 jobs:
   build-frontend:
     docker:
