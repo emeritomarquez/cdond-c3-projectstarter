@@ -277,7 +277,7 @@ jobs:
             npm cache verify
             rm -rf ~/project/backend/node_modules
             rm ~/project/backend/package-lock.json
-            npm install firebase-admin@^7.0.0
+            npm install typescript --save-dev
             npm audit fix
             ls -al ~/project/backend/node_modules/
             ls -al ~/project/backend/node_modules/@types/jest/
@@ -294,7 +294,6 @@ jobs:
             echo "****************Hello*****************"
             # Run and save the migration output
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
-            npm audit fix
       - npm-migration-errlog
 
 
