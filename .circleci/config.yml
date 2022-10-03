@@ -278,7 +278,7 @@ jobs:
             rm -rf ~/project/backend/node_modules
             rm ~/project/backend/package-lock.json
 #            npm install typescript --save-dev
-            npm install firebase-admin@6.5.4
+            npm install firebase-admin@7.0.0
             npm audit fix
             ls -al ~/project/backend/node_modules/
             ls -al ~/project/backend/node_modules/@types/jest/
