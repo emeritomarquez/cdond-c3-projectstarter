@@ -277,6 +277,9 @@ jobs:
             rm -rf ~/project/backend/node_modules
             npm install
             npm audit fix
+            ls -al ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/
+            cat ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-async-options.interface.d.ts
+            cat ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-cls.interface.d.ts
             # Run and save the migration output
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
 
