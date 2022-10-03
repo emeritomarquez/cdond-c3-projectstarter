@@ -274,7 +274,9 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
+            npm cache verify
             rm -rf ~/project/backend/node_modules
+            rm ~/project/backend/package-lock.json
             npm install
             npm audit fix
             ls -al ~/project/backend/node_modules/
