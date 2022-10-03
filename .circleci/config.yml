@@ -258,7 +258,7 @@ jobs:
 
   run-migrations:
     docker:
-     - image: circleci/node:14.15.0 # Docker image here that supports NodeJS
+     - image: circleci/node:13.8.0 # Docker image here that supports NodeJS
     steps:
       - checkout   # checkout Checkout code from git
       - restore_cache:
@@ -277,8 +277,8 @@ jobs:
             npm cache verify
             rm -rf ~/project/backend/node_modules
             rm ~/project/backend/package-lock.json
-            npm install
-            npm audit fix
+            npm install typescript --save-dev
+#            npm audit fix
             ls -al ~/project/backend/node_modules/
             ls -al ~/project/backend/node_modules/@types/jest/
             ls -al ~/project/backend/node_modules/@nestjs/
