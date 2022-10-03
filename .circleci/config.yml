@@ -275,7 +275,7 @@ jobs:
             npm audit --audit-level=critical
             npm audit fix
             npm cache verify
-            rm -rf ~/project/backend/node_modules
+            #            rm -rf ~/project/backend/node_modules
             rm ~/project/backend/package-lock.json
             npm install rxjs@6.5.4 --save
             npm audit fix
