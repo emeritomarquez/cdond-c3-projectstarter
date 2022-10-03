@@ -256,10 +256,6 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
           event: on_fail
 
-      - destroy-environment:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-          event: on_fail
-
   run-migrations:
     docker:
      - image: circleci/node:13.8.0 # Docker image here that supports NodeJS
@@ -270,6 +266,8 @@ jobs:
       - run:
           name: Run migrations
           command: |
+            ls -al ~/project/backend/src/
+            rm -rf ~/project/backend/src/node_modules
             cd backend
             npm install
             npm audit fix --audit-level=critical --force
