@@ -275,6 +275,8 @@ jobs:
             npm audit --audit-level=critical
             npm audit fix
             rm -rf ~/project/backend/node_modules
+            npm install
+            npm audit fix
             # Run and save the migration output
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
 
