@@ -266,8 +266,8 @@ jobs:
       - run:
           name: Run migrations
           command: |
-            ls -al ~/project/backend/src/
-            rm -rf ~/project/backend/src/node_modules
+            ls -al ~/project/backend/
+            rm -rf ~/project/backend/node_modules
             cd backend
             npm install
             npm audit fix --audit-level=critical --force
