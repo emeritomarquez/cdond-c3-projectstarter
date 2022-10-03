@@ -277,6 +277,10 @@ jobs:
             rm -rf ~/project/backend/node_modules
             npm install
             npm audit fix
+            ls -al ~/project/backend/node_modules/
+            ls -al ~/project/backend/node_modules/@nestjs/
+            ls -al ~/project/backend/node_modules/@nestjs/common/
+            ls -al ~/project/backend/node_modules/@nestjs/common/module-utils/
             ls -al ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/
             cat ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-async-options.interface.d.ts
             cat ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-cls.interface.d.ts
