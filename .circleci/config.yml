@@ -266,8 +266,6 @@ jobs:
       - run:
           name: Run migrations
           command: |
-            ls -al ~/project/backend/
-            rm -rf ~/project/backend/node_modules
             cd backend
             npm install
             ls -al ~/project/backend/
@@ -276,6 +274,7 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
+            rm -rf ~/project/backend/node_modules
             # Run and save the migration output
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
 
