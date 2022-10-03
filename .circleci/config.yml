@@ -278,7 +278,7 @@ jobs:
             rm -rf ~/project/backend/node_modules
             rm ~/project/backend/package-lock.json
             npm install
-            npm audit fix
+#            npm audit fix
             ls -al ~/project/backend/node_modules/
             ls -al ~/project/backend/node_modules/@types/jest/
             ls -al ~/project/backend/node_modules/@nestjs/
