@@ -268,10 +268,6 @@ jobs:
           command: |
             cd backend
             npm install
-#            npm audit fix --audit-level=critical --force
-#            npm audit fix --force
-#            npm audit --audit-level=critical
-#            npm audit fix
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt
       - npm-migration-errlog
 
