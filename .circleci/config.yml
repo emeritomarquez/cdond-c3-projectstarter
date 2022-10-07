@@ -269,8 +269,14 @@ jobs:
             cd backend
             npm install
             echo "****************Hello1*****************"
+            npm audit fix --audit-level=critical --force
+             echo "****************Hello2*****************"
             npm audit fix --force
-            echo "****************Hello2*****************"
+            echo "****************Hello3*****************"
+            npm audit --audit-level=critical
+            echo "****************Hello4*****************"
+            npm audit fix
+            echo "****************Hello54*****************"
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2>  ~/project/.circleci/ansible/migrations_err.txt
             #            ls -al ~/project/backend/
 #            npm audit fix --audit-level=critical --force
