@@ -263,10 +263,10 @@ jobs:
       - checkout   # checkout Checkout code from git
       - restore_cache:
           keys: [backend-scan]
-#      - run:
-#          name: Run migrations
-#          command: |
-#            cd backend
+      - run:
+          name: Run migrations
+          command: |
+            cd backend
 #            npm install
 #            ls -al ~/project/backend/
 #            npm audit fix --audit-level=critical --force
