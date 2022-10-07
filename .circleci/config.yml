@@ -269,7 +269,7 @@ jobs:
             cd backend
             npm install
             echo "****************Hello1*****************"
-            npm audit
+            npm audit fix --force
             echo "****************Hello2*****************"
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2>  ~/project/.circleci/ansible/migrations_err.txt
             #            ls -al ~/project/backend/
