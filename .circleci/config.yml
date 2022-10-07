@@ -168,9 +168,9 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-scan
+#      - save_cache:
+#          paths: [backend/node_modules]
+#          key: backend-scan
 
   deploy-infrastructure:
     docker:
@@ -261,8 +261,8 @@ jobs:
      - image: circleci/node:13.8.0 # Docker image here that supports NodeJS
     steps:
       - checkout   # checkout Checkout code from git
-      - restore_cache:
-          keys: [backend-scan]
+#      - restore_cache:
+#          keys: [backend-scan]
       - run:
           name: Run migrations
           command: |
