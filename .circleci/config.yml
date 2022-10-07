@@ -268,29 +268,29 @@ jobs:
           command: |
             cd backend
             npm install
-            ls -al ~/project/backend/
-            npm audit fix --audit-level=critical --force
+#            ls -al ~/project/backend/
+#            npm audit fix --audit-level=critical --force
             # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
-            npm audit fix --force
-            npm audit --audit-level=critical
-            npm audit fix
-            npm cache verify
-            rm -rf ~/project/backend/node_modules
-            rm ~/project/backend/package-lock.json
-            npm install
-            ls -al ~/project/backend/node_modules/
-            ls -al ~/project/backend/node_modules/@types/jest/
-            ls -al ~/project/backend/node_modules/@nestjs/
-            ls -al ~/project/backend/node_modules/@nestjs/common/
-            ls -al ~/project/backend/node_modules/@nestjs/common/module-utils/
-            ls -al ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/
-            echo "****************Hello*****************"
-            cat ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-async-options.interface.d.ts
-            echo "****************Hello*****************"
-            cat ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-cls.interface.d.ts
-            echo "****************Hello*****************"
-            cat ~/project/backend/node_modules/@types/jest/index.d.ts
-            echo "****************Hello*****************"
+#            npm audit fix --force
+#            npm audit --audit-level=critical
+#            npm audit fix
+#            npm cache verify
+#            rm -rf ~/project/backend/node_modules
+#            rm ~/project/backend/package-lock.json
+#            npm install
+#            ls -al ~/project/backend/node_modules/
+#            ls -al ~/project/backend/node_modules/@types/jest/
+#            ls -al ~/project/backend/node_modules/@nestjs/
+#            ls -al ~/project/backend/node_modules/@nestjs/common/
+#            ls -al ~/project/backend/node_modules/@nestjs/common/module-utils/
+#            ls -al ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/
+#            echo "****************Hello*****************"
+#            cat ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-async-options.interface.d.ts
+#            echo "****************Hello*****************"
+#            cat ~/project/backend/node_modules/@nestjs/common/module-utils/interfaces/configurable-module-cls.interface.d.ts
+#            echo "****************Hello*****************"
+#            cat ~/project/backend/node_modules/@types/jest/index.d.ts
+#            echo "****************Hello*****************"
             # Run and save the migration output
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
       - npm-migration-errlog
