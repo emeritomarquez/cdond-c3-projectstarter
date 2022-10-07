@@ -256,13 +256,13 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
           event: on_fail
 
-#  run-migrations:
-#    docker:
-#     - image: circleci/node:13.8.0 # Docker image here that supports NodeJS
-#    steps:
-#      - checkout   # checkout Checkout code from git
-#      - restore_cache:
-#          keys: [backend-scan]
+  run-migrations:
+    docker:
+     - image: circleci/node:13.8.0 # Docker image here that supports NodeJS
+    steps:
+      - checkout   # checkout Checkout code from git
+      - restore_cache:
+          keys: [backend-scan]
 #      - run:
 #          name: Run migrations
 #          command: |
@@ -319,5 +319,5 @@ workflows:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
       - configure-infrastructure:
           requires: [deploy-infrastructure]
-#      - run-migrations:
-#          requires: [configure-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
