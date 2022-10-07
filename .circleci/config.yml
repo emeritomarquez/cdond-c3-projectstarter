@@ -272,7 +272,7 @@ jobs:
 #            npm audit fix --force
 #            npm audit --audit-level=critical
 #            npm audit fix
-            npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2 >  ~/project/.circleci/ansible/migrations_err.txt
+            npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt
       - npm-migration-errlog
 
 
