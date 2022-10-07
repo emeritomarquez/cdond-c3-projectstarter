@@ -265,9 +265,9 @@ jobs:
           keys: [backend-scan]
       - run:
           name: Run migrations
-          command: |
-            cd backend
-            npm install
+#          command: |
+#            cd backend
+#            npm install
 #            ls -al ~/project/backend/
 #            npm audit fix --audit-level=critical --force
             # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
@@ -292,7 +292,7 @@ jobs:
 #            cat ~/project/backend/node_modules/@types/jest/index.d.ts
 #            echo "****************Hello*****************"
             # Run and save the migration output
-            npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
+#            npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
       - npm-migration-errlog
 
 
