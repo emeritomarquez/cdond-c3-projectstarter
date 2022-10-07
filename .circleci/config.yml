@@ -41,8 +41,8 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [frontend-build]
+#      - restore_cache:
+#          keys: [frontend-build]
       - run:
           name: Build front-end
           command: |
@@ -53,17 +53,17 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [frontend/node_modules]
-          key: frontend-build
+#      - save_cache:
+#          paths: [frontend/node_modules]
+#          key: frontend-build
 
   build-backend:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [backend-build]
+#      - restore_cache:
+#          keys: [backend-build]
       - run:
           name: Back-end build
           command: |
@@ -74,17 +74,17 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-build
+#      - save_cache:
+#          paths: [backend/node_modules]
+#          key: backend-build
 
   test-frontend:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [frontend-build]
+#     - restore_cache:
+#          keys: [frontend-build]
       - run:
           name: Front-end test
           command: |
@@ -95,17 +95,17 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [frontend/node_modules]
-          key: frontend-test
+#      - save_cache:
+#          paths: [frontend/node_modules]
+#          key: frontend-test
 
   test-backend:
     docker:
        - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [backend-build]
+#      - restore_cache:
+#          keys: [backend-build]
       - run:
           name: Back-end test
           command: |
@@ -116,17 +116,17 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-test
+#      - save_cache:
+#          paths: [backend/node_modules]
+#          key: backend-test
 
   scan-frontend:
     docker:
        - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [frontend-test]
+#      - restore_cache:
+#          keys: [frontend-test]
       - run:
           name: Front-end scan
           command: |
@@ -142,17 +142,17 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [frontend/node_modules]
-          key: frontend-scan
+#      - save_cache:
+#          paths: [frontend/node_modules]
+#          key: frontend-scan
 
   scan-backend:
     docker:
        - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [backend-test]
+#      - restore_cache:
+#          keys: [backend-test]
       - run:
           name: Back-end scan
           command: |
