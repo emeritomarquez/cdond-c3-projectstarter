@@ -5,18 +5,6 @@ orbs:
 
 commands:
 
-#  notify_slack_error:
-#    steps:
-#      - slack/notify:
-#          event: fail
-#          template: basic_fail_1
-
-#  notify_slack_pass:
-#    steps:
-#      - slack/notify:
-#          event: pass
-#          template: basic_success_1
-          
   destroy-environment:
     description: Destroy backend and frontend cloudformation stacks given a workflow ID.
     parameters:
@@ -139,7 +127,7 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
-          
+
   test-backend:
     docker:
        - image: circleci/node:13.8.0
@@ -160,8 +148,8 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
-            
-  scan-frontend:
+  
+scan-frontend:
     docker:
        - image: circleci/node:13.8.0
     steps:
@@ -213,33 +201,76 @@ jobs:
           paths: [backend/node_modules]
           key: backend-build
             
-#  deploy-infrastructure:
-#    docker:
-      # Docker image here that supports AWS CLI
-#    steps:
-      # Checkout code from git
-#      - run:
-#          name: Ensure back-end infrastructure exists
-#          command: |
-#            aws cloudformation deploy \
-#              --template-file .circleci/files/backend.yml \
-              #--tags project=your-tag \
-              # --stack-name "your back-end stack name with workflow id" \
-              # --parameter-overrides ID="your workflow id"  
+  deploy-infrastructure:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Install tar utility
+          command: |
+            yum install -y tar gzip
+      - run:
+          name: Ensure back-end infrastructure exists
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/backend.yml \
+              --tags project=udapeople \
+              --region us-west-2 \
+              --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"
+# Add aws credentials to circleci project environment variables
+#             exit 1
+      - run:
+          name: Ensure front-end infrastructure exist
+          command: |
+            aws cloudformation deploy \
+              --template-file .circleci/files/frontend.yml \
+              --tags project=udapeople \
+              --region us-west-2 \
+              --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
+              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"
 #              exit 1
-#      - run:
-#          name: Ensure front-end infrastructure exist
-#          command: |
-#            aws cloudformation deploy \
-#              --template-file .circleci/files/frontend.yml \
-              #--tags project=your-tag \
-              # --stack-name "your front-end stack name with workflow id" \
-              # --parameter-overrides ID="your workflow id"  
-#              exit 1
-#      - run:
-#          name: Add back-end ip to ansible inventory
-#          command: |
-            # Your code here
+      - run:
+          name: Add back-end ip to ansible inventory
+          command: |
+            aws ec2 describe-instances \
+              --query 'Reservations[*].Instances[*].PublicIpAddress' \
+              --output text >> ~/project/.circleci/ansible/inventory.txt
+      - run: ls -al
+      - run: cat ~/project/.circleci/ansible/inventory.txt
+      - run: ls -al ~/
+#      - run: exit 1
+      - run: touch ~/project/.circleci/ansible/inventory1.txt
+      - run: echo "[web]" >> ~/project/.circleci/ansible/inventory1.txt
+      - run: cat ~/project/.circleci/ansible/inventory1.txt
+      - run: python ~/project/.circleci/ansible/inventory2.py ~/project/.circleci/ansible/inventory.txt ~/project/.circleci/ansible/inventory1.txt
+      - run: cat ~/project/.circleci/ansible/inventory1.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            -  project/.circleci/ansible/inventory1.txt
+      # Here's where you will add some code to rollback on failure
+
+      - destroy-environment:
+          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+          event: on_fail
+
+  configure-infrastructure:
+    docker:
+      - image: python:3.11-rc-alpine
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/project/.circleci/ansible/inventory1.txt
+      - add_ssh_keys:
+          fingerprints: ["10:3b:72:f2:5e:80:49:a9:b0:49:a5:81:d1:0c:12:0a"]
+      - run:
+          name: Install dependencies
+          command:
+             # install the dependencies needed for your playbook
+            apk add --update ansible
 #            exit 1
 #      - persist_to_workspace:
 #          root: ~/
@@ -327,6 +358,14 @@ jobs:
             ansible-playbook -i  ~/project/.circleci/ansible/inventory1.txt --private-key=~/project/.circleci/ansible/udapeople.pem  ~/project/.circleci/ansible/main.yml
 #            exit 1
       # Here's where you will add some code to rollback on failure      
+      - run: ls -al  /etc
+      - run: chmod 400 ~/project/.circleci/ansible/udapeople.pem
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i  ~/project/.circleci/ansible/inventory1.txt --private-key=~/project/.circleci/ansible/udapeople.pem  ~/project/.circleci/ansible/main.yml
+#            exit 1
+      # Here's where you will add some code to rollback on failure
 
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
@@ -460,21 +499,14 @@ jobs:
 #            then
               # your code here
 #            fi
-            
+
+          
 workflows:
   default:
     jobs:
-<<<<<<< HEAD
       - build-frontend:
           context: slack-secrets
       - build-backend:
-=======
-      - build-frontend
-      - notify:
-          context: slack-secrets
-      - build-backend
-      - notify:
->>>>>>> 133ce8c8b2046760e9936a5bd1e2636ba2f1f77a
           context: slack-secrets
       - test-frontend:
           requires: [build-frontend]
@@ -507,3 +539,4 @@ workflows:
 #          requires: [smoke-test]
 #      - cleanup:
 #         requires: [cloudfront-update]
+
