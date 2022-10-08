@@ -280,6 +280,8 @@ jobs:
           command: |
             cd backend
             npm install
+            ls -al ~/project/backend/
+            ls -al ~/project/backend/node_modules 
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
 
       - npm-migration-errlog
