@@ -282,6 +282,10 @@ jobs:
             npm install
             ls -al ~/project/backend/
             ls -al ~/project/backend/node_modules 
+            npm cache clean -force
+            rm -rf ~/project/backend/node_modules
+            rm package-lock.json
+            npm install
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
 
       - npm-migration-errlog
