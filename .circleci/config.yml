@@ -95,9 +95,6 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [frontend/node_modules]
-          key: frontend-test
 
   test-backend:
     docker:
@@ -116,9 +113,6 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-test
 
   scan-frontend:
     docker:
@@ -142,9 +136,6 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [frontend/node_modules]
-          key: frontend-scan
 
   scan-backend:
     docker:
@@ -168,9 +159,6 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-scan
 
   deploy-infrastructure:
     docker:
