@@ -255,29 +255,6 @@ jobs:
 #      - destroy-environment:
 #          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 #          event: on_fail
-
-  configure-infrastructure:
-    docker:
-      - image: python:3.11-rc-alpine
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/
-      - run: cat ~/project/.circleci/ansible/inventory1.txt
-      - add_ssh_keys:
-          fingerprints: ["10:3b:72:f2:5e:80:49:a9:b0:49:a5:81:d1:0c:12:0a"]
-      - run:
-          name: Install dependencies
-          command:
-             # install the dependencies needed for your playbook
-            apk add --update ansible
-#            exit 1
-#      - persist_to_workspace:
-#          root: ~/
-#          paths:
-#            - project/.circleci/ansible/inventory.txt
-      # Here's where you will add some code to rollback on failure      
-
   deploy-infrastructure:
     docker:
       - image: amazon/aws-cli
