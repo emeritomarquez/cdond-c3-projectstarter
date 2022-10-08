@@ -68,8 +68,6 @@ jobs:
             cd frontend
             npm install
             npm run build
-            npm audit fix
-            npm audit fix --force
 #            exit 1
       - slack/notify:
           channel: circleci-udapeople
@@ -92,8 +90,6 @@ jobs:
             cd backend
             npm install
             npm run build
-            npm audit fix
-            npm audit fix --force
 #            exit 1
       - slack/notify:
           channel: circleci-udapeople
@@ -103,17 +99,14 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
-#      - notify_slack_error
-#          context: slack-secrets
-#      - notify_slack_pass
-#          context: slack-secrets
+  
   test-frontend:
     docker:
        - image: circleci/node:13.8.0
     steps:
       - checkout
       - restore_cache:
-          keys: [frontend-test]
+          keys: [frontend-build]
       - run:
           name: Front-end test
           command: |
@@ -124,9 +117,6 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [frontend/node_modules]
-          key: frontend-build
 
   test-backend:
     docker:
@@ -134,7 +124,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [backend-test]
+          keys: [backend-build]
       - run:
           name: Back-end test
           command: |
@@ -145,58 +135,52 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-build
   
-# scan-frontend:
-#    docker:
-#       - image: circleci/node:13.8.0
-#    steps:
-#      - checkout
-#      - restore_cache:
-#          keys: [frontend-scan]
-#      - run:
-#          name: Front-end scan
-#          command: |
-#            cd frontend
-#            npm install
+ scan-frontend:
+    docker:
+       - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-build]
+      - run:
+          name: Front-end scan
+          command: |
+            cd frontend
+            npm install
             # npm install oauth-sign@^0.9.0
-#            npm audit fix --audit-level=critical --force
+            npm audit fix --audit-level=critical --force
             # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
-#            npm audit fix --force
-#            npm audit --audit-level=critical
-#            npm audit fix
-#      - slack/notify:
-#          channel: circleci-udapeople
-#          event: fail
-#          template: basic_fail_1
-#      - save_cache:
-#          paths: [frontend/node_modules]
-#          key: frontend-build
+            npm audit fix --force
+            npm audit --audit-level=critical
+            npm audit fix
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
 
-#  scan-backend:
-#    docker:
-#       - image: circleci/node:13.8.0
-#    steps:
-#      - checkout
-#      - restore_cache:
-#          keys: [backend-scan]
-#      - run:
-#          name: Back-end scan
-#          command: |
-#            cd backend
-#            npm install
+  scan-backend:
+    docker:
+       - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [backend-build]
+      - run:
+          name: Back-end scan
+          command: |
+            cd backend
+            npm install
             # npm install oauth-sign@^0.9.0
-            #            npm audit fix --audit-level=critical --force
+            npm audit fix --audit-level=critical --force
             # If the "npm audit fix" command above could not fix all critical vulnerabilities, try “npm audit fix --force” again
-#            npm audit fix --force
-#            npm audit --audit-level=critical
-#            npm audit fix
-#      - slack/notify:
-#          channel: circleci-udapeople
-#          event: fail
-#          template: basic_fail_1
+            npm audit fix --force
+            npm audit --audit-level=critical
+            npm audit fix
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
 #      - save_cache:
 #          paths: [backend/node_modules]
 #          key: backend-build
@@ -491,12 +475,12 @@ workflows:
       - test-backend:
           requires: [build-backend]
           context: slack-secrets
-#      - scan-backend:
-#          requires: [build-backend]
-#          context: slack-secrets
-#      - scan-frontend:
-#          requires: [build-frontend]
-#          context: slack-secrets
+      - scan-backend:
+          requires: [build-backend]
+          context: slack-secrets
+      - scan-frontend:
+          requires: [build-frontend]
+          context: slack-secrets
 #      - deploy-infrastructure:
 #          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
 #          filters:
