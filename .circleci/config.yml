@@ -212,6 +212,40 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
+            
+#  deploy-infrastructure:
+#    docker:
+      # Docker image here that supports AWS CLI
+#    steps:
+      # Checkout code from git
+#      - run:
+#          name: Ensure back-end infrastructure exists
+#          command: |
+#            aws cloudformation deploy \
+#              --template-file .circleci/files/backend.yml \
+              #--tags project=your-tag \
+              # --stack-name "your back-end stack name with workflow id" \
+              # --parameter-overrides ID="your workflow id"  
+#              exit 1
+#      - run:
+#          name: Ensure front-end infrastructure exist
+#          command: |
+#            aws cloudformation deploy \
+#              --template-file .circleci/files/frontend.yml \
+              #--tags project=your-tag \
+              # --stack-name "your front-end stack name with workflow id" \
+              # --parameter-overrides ID="your workflow id"  
+#              exit 1
+#      - run:
+#          name: Add back-end ip to ansible inventory
+#          command: |
+            # Your code here
+#            exit 1
+#      - persist_to_workspace:
+#          root: ~/
+#          paths:
+#            - project/.circleci/ansible/inventory.txt
+      # Here's where you will add some code to rollback on failure      
 
   deploy-infrastructure:
     docker:
@@ -430,9 +464,17 @@ jobs:
 workflows:
   default:
     jobs:
+<<<<<<< HEAD
       - build-frontend:
           context: slack-secrets
       - build-backend:
+=======
+      - build-frontend
+      - notify:
+          context: slack-secrets
+      - build-backend
+      - notify:
+>>>>>>> 133ce8c8b2046760e9936a5bd1e2636ba2f1f77a
           context: slack-secrets
       - test-frontend:
           requires: [build-frontend]
