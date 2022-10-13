@@ -52,10 +52,10 @@ for line in lines:
     elif line == "172.31.20.231\n":
         pass
 #Windows AWS Work Machine Public
-    elif line == "34.212.193.49\n":
+    elif line == "54.213.41.218\n":
         pass
 #Ubuntu122.04 Public
-    elif line == "34.221.136.147\n":
+    elif line == "34.211.102.93\n":
         pass
     else:
         rows.append(line)
