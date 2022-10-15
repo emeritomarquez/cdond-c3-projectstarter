@@ -50,6 +50,9 @@
     - TYPEORM_MIGRATIONS: "{{ lookup('ansible.builtin.env', 'TYPEORM_MIGRATIONS')}}"
     - TYPEORM_MIGRATIONS_DIR: "{{ lookup('ansible.builtin.env', 'TYPEORM_MIGRATIONS_DIR')}}"
 
+- name: Display environment variable
+  ansible.builtin.command: echo "$TYPEORM_PORT"
+
 - name: customize /etc/environment
   become: yes
   ansible.builtin.lineinfile:
@@ -59,6 +62,6 @@
     line: "{{ item.key }}={{ item.value }}"
   with_items: "{{ os_environment }}"
 
-- name: Read environment variable TYPEORM_CONNECTION
+- name: Read environment variable TYPEORM_PORT
   ansible.builtin.debug:
-    msg: "'{{ lookup('ansible.builtin.env', 'TYPEORM_CONNECTION') }}' is the TYPEORM_CONNECTION environment variable."
+    msg: "'{{ lookup('ansible.builtin.env', 'TYPEORM_PORT') }}' is the TYPEORM_PORT environment variable."
