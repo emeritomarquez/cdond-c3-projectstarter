@@ -35,7 +35,7 @@
   raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
   changed_when: false
     
-- name: Read environment variable environment and builtin command
+- name: Display env variable 
   become: yes
 #  ansible.builtin.debug:
 #    name: Read environment variable
@@ -51,7 +51,7 @@
     - TYPEORM_MIGRATIONS: "{{ lookup('ansible.builtin.env', 'TYPEORM_MIGRATIONS')}}"
     - TYPEORM_MIGRATIONS_DIR: "{{ lookup('ansible.builtin.env', 'TYPEORM_MIGRATIONS_DIR')}}"
 
-- name: Display database port environment and builtin command
+- name: Display database port environment
   ansible.builtin.command: echo "$TYPEORM_PORT"
 - name: Display Database host
   ansible.builtin.command: echo "$TYPEORM_HOST"
