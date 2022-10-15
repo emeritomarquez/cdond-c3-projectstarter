@@ -35,33 +35,37 @@
   raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
   changed_when: false
     
-- name: Read environment variable
-  ansible.builtin.debug:
-    name: Read environment variable
-    state: present
-  environment:
-    - TYPEORM_CONNECTION: "{{ lookup('ansible.builtin.env', 'TYPEORM_CONNECTION')}}"
-    - TYPEORM_ENTITIES: "{{ lookup('ansible.builtin.env', 'TYPEORM_ENTITIES')}}"
-    - TYPEORM_HOST: "{{ lookup('ansible.builtin.env', 'TYPEORM_HOST')}}"
-    - TYPEORM_PORT: 5432
-    - TYPEORM_USERNAME: "{{ lookup('ansible.builtin.env', 'TYPEORM_USERNAME')}}"
-    - TYPEORM_PASSWORD: "{{ lookup('ansible.builtin.env', 'TYPEORM_PASSWORD')}}"
-    - TYPEORM_DATABASE: "{{ lookup('ansible.builtin.env', 'TYPEORM_DATABASE')}}"
-    - TYPEORM_MIGRATIONS: "{{ lookup('ansible.builtin.env', 'TYPEORM_MIGRATIONS')}}"
-    - TYPEORM_MIGRATIONS_DIR: "{{ lookup('ansible.builtin.env', 'TYPEORM_MIGRATIONS_DIR')}}"
+#- name: Read environment variable
+#  become: yes
+#  ansible.builtin.debug:
+#    name: Read environment variable
+#    state: present
+#  environment:
+#    - TYPEORM_CONNECTION: "{{ lookup('ansible.builtin.env', 'TYPEORM_CONNECTION')}}"
+#    - TYPEORM_ENTITIES: "{{ lookup('ansible.builtin.env', 'TYPEORM_ENTITIES')}}"
+#    - TYPEORM_HOST: "{{ lookup('ansible.builtin.env', 'TYPEORM_HOST')}}"
+#    - TYPEORM_PORT: 5432
+#    - TYPEORM_USERNAME: "{{ lookup('ansible.builtin.env', 'TYPEORM_USERNAME')}}"
+#    - TYPEORM_PASSWORD: "{{ lookup('ansible.builtin.env', 'TYPEORM_PASSWORD')}}"
+#    - TYPEORM_DATABASE: "{{ lookup('ansible.builtin.env', 'TYPEORM_DATABASE')}}"
+#    - TYPEORM_MIGRATIONS: "{{ lookup('ansible.builtin.env', 'TYPEORM_MIGRATIONS')}}"
+#    - TYPEORM_MIGRATIONS_DIR: "{{ lookup('ansible.builtin.env', 'TYPEORM_MIGRATIONS_DIR')}}"
 
-- name: Display environment variable
+- name: Display datbase port
   ansible.builtin.command: echo "$TYPEORM_PORT"
+- name: Display Database host
+  ansible.builtin.command: echo "$TYPEORM_HOST"
 
-- name: customize /etc/environment
-  become: yes
-  ansible.builtin.lineinfile:
-    dest: "/etc/environment"
-    state: present
-    regexp: "^{{ item.key }}="
-    line: "{{ item.key }}={{ item.value }}"
-  with_items: "{{ os_environment }}"
+#- name: customize /etc/environment
+#  become: yes
+#  ansible.builtin.lineinfile:
+#    dest: "/etc/environment"
+#    state: present
+#    regexp: "^{{ item.key }}="
+#    line: "{{ item.key }}={{ item.value }}"
+#  with_items: "{{ os_environment }}"
 
-- name: Read environment variable TYPEORM_PORT
-  ansible.builtin.debug:
-    msg: "'{{ lookup('ansible.builtin.env', 'TYPEORM_PORT') }}' is the TYPEORM_PORT environment variable."
+#- name: Read environment variable TYPEORM_PORT
+#  become: yes
+#  ansible.builtin.debug:
+#    msg: "'{{ lookup('ansible.builtin.env', 'TYPEORM_PORT') }}' is the TYPEORM_PORT environment variable."
