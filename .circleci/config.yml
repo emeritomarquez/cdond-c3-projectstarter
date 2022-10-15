@@ -256,18 +256,18 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/
-      - run: 
-          name: "List Environment variables"
-          command:
-            echo $TYPEORM_CONNECTION
-            echo $TYPEORM_ENTITIES
-            echo $TYPEORM_HOST
-            echo $TYPEORM_PORT
-            echo $TYPEORM_USERNAME
-            echo $TYPEORM_PASSWORD
-            echo $TYPEORM_DATABASE
-            echo $TYPEORM_MIGRATIONS
-            echo $TYPEORM_MIGRATIONS_DIR
+#      - run: 
+#          name: "List Environment variables"
+#          command:
+#            echo $TYPEORM_CONNECTION
+#            echo $TYPEORM_ENTITIES
+#            echo $TYPEORM_HOST
+#            echo $TYPEORM_PORT
+#            echo $TYPEORM_USERNAME
+#            echo $TYPEORM_PASSWORD
+#            echo $TYPEORM_DATABASE
+#            echo $TYPEORM_MIGRATIONS
+#            echo $TYPEORM_MIGRATIONS_DIR
       - run: cat ~/project/.circleci/ansible/inventory1.txt
       - add_ssh_keys:
           fingerprints: ["10:3b:72:f2:5e:80:49:a9:b0:49:a5:81:d1:0c:12:0a"]
