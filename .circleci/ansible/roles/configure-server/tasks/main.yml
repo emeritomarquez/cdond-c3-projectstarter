@@ -37,9 +37,6 @@
     
 - name: Display env variable 
   become: yes
-#  ansible.builtin.debug:
-#    name: Read environment variable
-#    state: present
   environment:
     - TYPEORM_CONNECTION: "{{ lookup('ansible.builtin.env', 'TYPEORM_CONNECTION')}}"
     - TYPEORM_ENTITIES: "{{ lookup('ansible.builtin.env', 'TYPEORM_ENTITIES')}}"
