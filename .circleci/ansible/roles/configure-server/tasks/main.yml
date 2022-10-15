@@ -51,7 +51,7 @@
 #    - TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
 
 - name: customize /etc/environment
-  ansible.builtin.lineinfilte:
+  ansible.builtin.lineinfile:
     dest: "/etc/environment"
     state: present
     regexp: "^{{ item.key }}="

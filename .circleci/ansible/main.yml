@@ -37,4 +37,4 @@
     - key: TYPEORM_PASSWORD
       value: udapeople123
     - key: TYPEORM_DATABASE
-      value: postggres 
+      value: postgres 
