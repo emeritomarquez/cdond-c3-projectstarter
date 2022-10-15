@@ -54,7 +54,7 @@
   shell: echo $PATH
   register: print_result
 
- - name: print message
-   debug:
-     msg: "{{ print_result.stdout_lines }}"
+- name: print message
+  debug:
+    msg: "{{ print_result.stdout_lines }}"
 
