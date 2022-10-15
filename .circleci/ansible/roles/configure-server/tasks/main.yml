@@ -51,6 +51,7 @@
 #    - TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
 
 - name: customize /etc/environment
+  become: yes
   ansible.builtin.lineinfile:
     dest: "/etc/environment"
     state: present
