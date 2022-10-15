@@ -242,10 +242,32 @@ jobs:
   configure-infrastructure:
     docker:
       - image: python:3.11-rc-alpine 
+    environment:
+      TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
+      TYPEORM_ENTITIES: "{{ lookup('env', 'TYPEORM_ENTITIES')}}"
+      TYPEORM_HOST: "{{ lookup('env', 'TYPEORM_HOST')}}"
+      TYPEORM_PORT: 5432
+      TYPEORM_USERNAME: "{{ lookup('env', 'TYPEORM_USERNAME')}}"
+      TYPEORM_PASSWORD: "{{ lookup('env', 'TYPEORM_PASSWORD')}}"
+      TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE')}}"
+      TYPEORM_MIGRATIONS: "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}"
+      TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
     steps:
       - checkout
       - attach_workspace:
           at: ~/
+      - run: 
+          name: "List Environment variables"
+          command:
+            echo $TYPEORM_CONNECTION
+            echo $TYPEORM_ENTITIES
+            echo $TYPEORM_HOST
+            echo $TYPEORM_PORT
+            echo $TYPEORM_USERNAME
+            echo $TYPEORM_PASSWORD
+            echo $TYPEORM_DATABASE
+            echo $TYPEORM_MIGRATIONS
+            echo $TYPEORM_MIGRATIONS_DIR
       - run: cat ~/project/.circleci/ansible/inventory1.txt
       - add_ssh_keys:
           fingerprints: ["10:3b:72:f2:5e:80:49:a9:b0:49:a5:81:d1:0c:12:0a"]
