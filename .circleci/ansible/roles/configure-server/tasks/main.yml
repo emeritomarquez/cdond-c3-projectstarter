@@ -59,11 +59,6 @@
     line: "{{ item.key }}={{ item.value }}"
   with_items: "{{ os_environment }}"
 
-- name: print environment variables
-  shell: echo $PATH
-  register: print_result
-
-- name: print message
-  debug:
-    msg: "{{ print_result.stdout_lines }}"
-
+- name: Read environment variable TYPEORM_CONNECTION
+  ansible.builtin.debug:
+    msg: "'{{ lookup('ansible.builtin.env', 'TYPEORM_CONNECTION') }}' is the TYPEORM_CONNECTION environment variable."
