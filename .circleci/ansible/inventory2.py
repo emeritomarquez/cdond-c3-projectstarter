@@ -57,6 +57,8 @@ for line in lines:
 #Ubuntu122.04 Public
     elif line == "35.89.203.62\n":
         pass
+    elif line == "52.38.189.232\n":
+        pass
     else:
         rows.append(line)
 
