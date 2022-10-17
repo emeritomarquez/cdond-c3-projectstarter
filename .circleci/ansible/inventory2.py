@@ -52,10 +52,10 @@ for line in lines:
     elif line == "172.31.20.231\n":
         pass
 #Windows AWS Work Machine Public
-    elif line == "54.213.41.218\n":
+    elif line == "35.84.212.136\n":
         pass
 #Ubuntu122.04 Public
-    elif line == "34.211.102.93\n":
+    elif line == "34.221.195.68\n":
         pass
 #Cloud9 Public
     elif line == "18.236.221.231\n":
