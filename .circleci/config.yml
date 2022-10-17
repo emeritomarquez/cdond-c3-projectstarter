@@ -275,7 +275,7 @@ jobs:
           name: Install dependencies
           command: 
              # install the dependencies needed for your playbook
-            apk add --update tar gzip ansible curl && pip install awscli
+            apk add --update ansible
 #            exit 1
       - run: ls -al  /etc
       - run: chmod 400 ~/project/.circleci/ansible/udapeople.pem
