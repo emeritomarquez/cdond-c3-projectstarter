@@ -42,10 +42,7 @@ commands:
     steps:
       - run:
           name: Revert migrations
-          # Add when this will run
           command: |
-            # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-#            SUCCESS = 1
             SUCCESS=$(curl -k https://kvdb.io/6h9wPbrfcMHffrSixfsDx2/migration_${CIRCLE_WORKFLOW_ID:0:7})
             echo $SUCCESS
             if(( $SUCCESS==1 )); 
@@ -479,8 +476,8 @@ workflows:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
-#      - deploy-frontend:
-#          requires: [run-migrations]
+      - deploy-frontend:
+          requires: [run-migrations]
 #      - deploy-backend:
 #          requires: [run-migrations]
 #      - smoke-test:
