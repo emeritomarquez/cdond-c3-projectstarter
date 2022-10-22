@@ -372,8 +372,8 @@ jobs:
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
           event: on_fail
-            #      - revert-migrations:
-            #workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      - revert-migrations:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
       - slack/notify:
           channel: circleci-udapeople
           event: fail
