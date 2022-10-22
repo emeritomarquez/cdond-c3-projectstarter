@@ -332,15 +332,15 @@ jobs:
 
       - npm-migration-errlog
 
-#  deploy-frontend:
-#    docker:
+  deploy-frontend:
+    docker:
       # Docker image here that supports AWS CLI
-#      - image: amazon/aws-cli
-#    steps:
+      - image: amazon/aws-cli
+    steps:
       # Checkout code from git
-#      - checkout
-#      - attach_workspace:
-#          at: ~/
+      - checkout
+      - attach_workspace:
+          at: ~/
 #      - run:
 #          name: Install dependencies
 #          command: |
@@ -476,8 +476,8 @@ workflows:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
-            #- deploy-frontend:
-            #requires: [run-migrations]
+      - deploy-frontend:
+          requires: [run-migrations]
 #      - deploy-backend:
 #          requires: [run-migrations]
 #      - smoke-test:
