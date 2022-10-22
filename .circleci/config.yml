@@ -338,7 +338,7 @@ jobs:
   deploy-frontend:
     docker:
       # Docker image here that supports AWS CLI
-      - image: amazon/aws-cli
+      - image: - image: python:3.11-rc-alpine
     steps:
       # Checkout code from git
       - checkout
@@ -348,7 +348,8 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-            apk add --update tar gzip ansible nodejs npm curl
+            apk add --update tar gzip ansible nodejs npm curl && \
+            pip install awscli
       - run:
           name: Get backend url
           command: |
