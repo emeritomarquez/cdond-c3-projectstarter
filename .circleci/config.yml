@@ -35,6 +35,26 @@ commands:
             cat ~/project/.circleci/ansible/migrations_err.txt
             python3 ~/project/.circleci/scratch-code/get_dump_files.py ~/project/.circleci/ansible/migrations_err.txt
 
+  revert-migrations:
+    description: Revert the last migration if successfully run in the current workflow.
+    parameters:
+      workflow_id:
+        type: string
+    steps:
+      - run:
+          name: Revert migrations
+          when: on_fail
+          command: |
+            SUCCESS=$(curl -k https://kvdb.io/6h9wPbrfcMHffrSixfsDx2/migration_${CIRCLE_WORKFLOW_ID:0:7})
+            echo $SUCCESS
+            if(( $SUCCESS==1 ));
+            then
+              cd ~/project/backend
+              npm install
+              npm run migrations:revert
+            fi
+
+
 jobs:
   build-frontend:
     docker:
@@ -275,6 +295,47 @@ jobs:
 
       - npm-migration-errlog
 
+  deploy-frontend:
+    docker:
+      - image: python:3.11-rc-alpine
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update tar gzip ansible nodejs npm curl && \
+            pip install awscli
+      - run:
+          name: Get backend url
+          command: |
+            export BACKEND_IP=$(aws ec2 describe-instances \
+              --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+              --query 'Reservations[*].Instances[*].PublicIpAddress' \
+              --output text )
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "${API_URL}"
+            echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
+            cat frontend/.env
+      - run:
+          name: Deploy frontend objects
+          command: |
+            cd frontend
+            npm install
+            npm run build
+            tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
+            aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+          event: on_fail
+      - revert-migrations:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
+
 
 workflows:
   default:
@@ -301,3 +362,5 @@ workflows:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
+      - deploy-frontend:
+          requires: [run-migrations]
