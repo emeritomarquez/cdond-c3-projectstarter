@@ -332,46 +332,46 @@ jobs:
 
       - npm-migration-errlog
 
-  deploy-frontend:
-    docker:
+#  deploy-frontend:
+#    docker:
       # Docker image here that supports AWS CLI
-      - image: amazon/aws-cli
-    steps:
+#      - image: amazon/aws-cli
+#    steps:
       # Checkout code from git
-      - checkout
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: Install dependencies
-          command: |
+#      - checkout
+#      - attach_workspace:
+#          at: ~/
+#      - run:
+#          name: Install dependencies
+#          command: |
             # your code here
-            apk add --update tar gzip ansible nodejs npm curl
-      - run:
-          name: Get backend url
-          command: |
+            #            apk add --update tar gzip ansible nodejs npm curl
+            #      - run:
+            #          name: Get backend url
+            #command: |
             # your code here
-            export API_URL="http://${BACKEND_IP}:3030"
-            echo "${API_URL}"
-            echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
-            cat frontend/.env
-      - run:
-          name: Deploy frontend objects
-          command: |
+            #            export API_URL="http://${BACKEND_IP}:3030"
+            #echo "${API_URL}"
+            #echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
+            #cat frontend/.env
+            #- run:
+            #name: Deploy frontend objects
+            #command: |
             # your code here
-            cd frontend
-            npm install
-            npm run build
-            tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
-            aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
+            #cd frontend
+            #npm install
+            #npm run build
+            #tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
+            #aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure      
-      - destroy-environment:
-          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
-      - revert-migrations:
-          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
-      - slack/notify:
-          channel: circleci-udapeople
-          event: fail
-          template: basic_fail_1
+      #- destroy-environment:
+      #   workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      #- revert-migrations:
+      #    workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      #- slack/notify:
+      #    channel: circleci-udapeople
+      #    event: fail
+      #    template: basic_fail_1
                     
 #  deploy-backend:
 #    docker:
@@ -476,8 +476,8 @@ workflows:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [run-migrations]
+            #- deploy-frontend:
+            #requires: [run-migrations]
 #      - deploy-backend:
 #          requires: [run-migrations]
 #      - smoke-test:
