@@ -150,9 +150,6 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
-      - save_cache:
-          paths: [frontend/node_modules]
-          key: frontend-build
       - slack/notify:
           channel: circleci-udapeople
           event: fail
@@ -176,9 +173,6 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-build
       - slack/notify:
           channel: circleci-udapeople
           event: fail
