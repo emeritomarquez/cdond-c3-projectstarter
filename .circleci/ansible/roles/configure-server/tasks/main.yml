@@ -62,7 +62,7 @@
 - name: Printing all the environment variables in Ansible
   become: yes
   gather_facts: true
-  ansible.builtin.debug:
+  debug:
     msg1: "TYPEORM_CONNECTION={{ ansible_env.TYPEORM_CONNECTION }}"
     msg2: "TYPEORM_MIGRATIONS_DIR={{ ansible_env.TYPEORM_MIGRATIONS_DIR }}"
     msg3: "TYPEORM_ENTITIES={{ ansible_env.TYPEORM_ENTITIES }}"
