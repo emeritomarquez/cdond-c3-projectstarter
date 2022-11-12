@@ -63,15 +63,15 @@
   become: yes
   gather_facts: true
   debug:
-    msg1: "TYPEORM_CONNECTION={{ ansible_env.TYPEORM_CONNECTION }}"
-    msg2: "TYPEORM_MIGRATIONS_DIR={{ ansible_env.TYPEORM_MIGRATIONS_DIR }}"
-    msg3: "TYPEORM_ENTITIES={{ ansible_env.TYPEORM_ENTITIES }}"
-    msg4: "TYPEORM_MIGRATIONS={{ ansible_env.TYPEORM_MIGRATIONS }}"
-    msg5: "TYPEORM_HOST={{ ansible_env.TYPEORM_HOST }}"
-    msg6: "TYPEORM_PORT={{ ansible_env.TYPEORM_PORT }}"
-    msg7: "TYPEORM_USERNAME={{ ansible_env.TYPEORM_USERNAME }}"
-    msg8: "TYPEORM_PASSWORD={{ ansible_env.TYPEORM_PASSWORD }}"
-    msg9: "TYPEORM_DATABASE={{ ansible_env.TYPEORM_DATABASE }}"
+    - msg1: "TYPEORM_CONNECTION={{ ansible_env.TYPEORM_CONNECTION }}"
+    - msg2: "TYPEORM_MIGRATIONS_DIR={{ ansible_env.TYPEORM_MIGRATIONS_DIR }}"
+    - msg3: "TYPEORM_ENTITIES={{ ansible_env.TYPEORM_ENTITIES }}"
+    - msg4: "TYPEORM_MIGRATIONS={{ ansible_env.TYPEORM_MIGRATIONS }}"
+    - msg5: "TYPEORM_HOST={{ ansible_env.TYPEORM_HOST }}"
+    - msg6: "TYPEORM_PORT={{ ansible_env.TYPEORM_PORT }}"
+    - msg7: "TYPEORM_USERNAME={{ ansible_env.TYPEORM_USERNAME }}"
+    - msg8: "TYPEORM_PASSWORD={{ ansible_env.TYPEORM_PASSWORD }}"
+    - msg9: "TYPEORM_DATABASE={{ ansible_env.TYPEORM_DATABASE }}"
 
 #- name: Read environment variable TYPEORM_CONNECTION
 #  ansible.builtin.debug:
