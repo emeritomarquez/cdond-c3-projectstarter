@@ -60,8 +60,6 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [frontend-build]
       - run:
           name: Build front-end
           command: |
@@ -82,8 +80,6 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [backend-build]
       - run:
           name: Back-end build
           command: |
@@ -135,7 +131,7 @@ jobs:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-  
+
   scan-frontend:
     docker:
        - image: circleci/node:13.8.0
@@ -154,6 +150,9 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-build
       - slack/notify:
           channel: circleci-udapeople
           event: fail
@@ -177,13 +176,13 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
+      - save_cache:
+          paths: [backend/node_modules]
+          key: backend-build
       - slack/notify:
           channel: circleci-udapeople
           event: fail
           template: basic_fail_1
-#      - save_cache:
-#          paths: [backend/node_modules]
-#          key: backend-build
             
   deploy-infrastructure:
     docker:
@@ -552,8 +551,8 @@ workflows:
           requires: [run-migrations]
       - deploy-backend:
           requires: [run-migrations]
-      - smoke-test:
-          requires: [deploy-backend, deploy-frontend]
+#      - smoke-test:
+#          requires: [deploy-backend, deploy-frontend]
 #      - cloudfront-update:
 #          requires: [smoke-test]
 #      - cleanup:
