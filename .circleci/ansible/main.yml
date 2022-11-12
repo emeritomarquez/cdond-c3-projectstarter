@@ -22,20 +22,30 @@
   vars:
     os_environment:
       - key: TYPEORM_CONNECTION
-        value: postgres
+#        value: postgres
+        value:  "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
       - key: TYPEORM_MIGRATIONS_DIR
-        value: ./src/migrations
+#        value: ./src/migrations
+        value:  "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
       - key: TYPEORM_ENTITIES
-        value: ./src/modules/domain/**/*.entity.ts
+#        value: ./src/modules/domain/**/*.entity.ts
+        value:   "{{ lookup('env', 'TYPEORM_ENTITIES')}}"
       - key: TYPEORM_MIGRATIONS
-        value: ./src/migrations/*.ts
+#        value: ./src/migrations/*.ts
+        value:   "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}"
       - key: TYPEORM_HOST
-        value: udapeople-prod.c4pq483zocdj.us-west-2.rds.amazonaws.com
+#        value: udapeople-prod.c4pq483zocdj.us-west-2.rds.amazonaws.com
+        value:   "{{ lookup('env', 'TYPEORM_HOST')}}"
       - key: TYPEORM_PORT
-        value: 5432
+#        value: 5432
+        value:   "{{ lookup('env', 'TYPEORM_PORT')}}"
       - key: TYPEORM_USERNAME
-        value: postgres
+#        value: postgres
+        value:   "{{ lookup('env', 'TYPEORM_USERNAME')}}"
       - key: TYPEORM_PASSWORD
-        value: udapeople123
+#        value: udapeople123
+        value:   "{{ lookup('env', 'TYPEORM_PASSWORD')}}"
       - key: TYPEORM_DATABASE
-        value: postgres 
+#        value: postgres
+        value:   "{{ lookup('env', 'TYPEORM_DATABASE')}}"
+
