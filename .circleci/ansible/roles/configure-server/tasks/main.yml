@@ -59,11 +59,11 @@
     line: "{{ item.key }}={{ item.value }}"
   with_items: "{{ os_environment }}"
 
-- name: "Print environment variables of remote server"
-#  become: yes
-#  gather_facts: true
-#  debug:
-#    - msg1: "TYPEORM_CONNECTION={{ ansible_env.TYPEORM_CONNECTION }}"
+#- name: "Print environment variables of remote server"
+- become: yes
+  gather_facts: true
+  debug:
+    - msg1: "TYPEORM_CONNECTION={{ ansible_env.TYPEORM_CONNECTION }}"
 #    - msg2: "TYPEORM_MIGRATIONS_DIR={{ ansible_env.TYPEORM_MIGRATIONS_DIR }}"
 #    - msg3: "TYPEORM_ENTITIES={{ ansible_env.TYPEORM_ENTITIES }}"
 #    - msg4: "TYPEORM_MIGRATIONS={{ ansible_env.TYPEORM_MIGRATIONS }}"
