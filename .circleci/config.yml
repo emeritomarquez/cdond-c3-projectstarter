@@ -262,7 +262,7 @@ jobs:
       - run:
           name: Configure server
           command: |
-            ansible-playbook -i  ~/project/.circleci/ansible/inventory1.txt --private-key=~/project/.circleci/ansible/udapeople.pem  ~/project/.circleci/ansible/main.yml
+            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i  ~/project/.circleci/ansible/inventory1.txt --private-key=~/project/.circleci/ansible/udapeople.pem  ~/project/.circleci/ansible/main.yml
 #            exit 1
       # Here's where you will add some code to rollback on failure
 
