@@ -58,7 +58,7 @@ for line in lines:
     elif line == "35.90.223.214\n":
         pass
 #Cloud9 Public
-    elif line == "54.200.203.87\n":
+    elif line == "54.200.203.86\n":
         pass
     else:
         rows.append(line)
