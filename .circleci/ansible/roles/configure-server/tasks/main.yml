@@ -35,3 +35,16 @@
   raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
   changed_when: false
 
+- name: customize /etc/environment
+  become: yes
+  ansible.builtin.lineinfile:
+    dest: "/etc/environment"
+    state: present
+    regexp: "^{{ item.key }}="
+    line: "{{ item.key }}={{ item.value }}"
+  with_items: "{{ os_environment }}"
+
+#- name: Read environment variable TYPEORM_CONNECTION
+#  ansible.builtin.debug:
+#    msg: "'{{ lookup('ansible.builtin.env', 'TYPEORM_CONNECTION') }}' is the TYPEORM_CONNECTION environment variable."
+
