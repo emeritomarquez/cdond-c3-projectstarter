@@ -414,7 +414,7 @@ jobs:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"  
           event: on_fail
       - revert-migrations:
-          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}" 
+         workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}" 
       - slack/notify:
           channel: circleci-udapeople
           event: fail
@@ -545,8 +545,8 @@ workflows:
           requires: [configure-infrastructure]
       - deploy-frontend:
           requires: [run-migrations]
-#      - deploy-backend:
-#          requires: [run-migrations]
+      - deploy-backend:
+          requires: [run-migrations]
 #      - smoke-test:
 #          requires: [deploy-backend, deploy-frontend]
 #      - cloudfront-update:
