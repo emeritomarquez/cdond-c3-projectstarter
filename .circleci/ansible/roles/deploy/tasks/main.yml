@@ -1,15 +1,12 @@
 ---
-- name: "install dependencies"
+- name: install npm
   become: yes
-  apt:
-    name: "npm"
-    state: latest
-    update_cache: yes
+  command: npm install
 
 - name: Stop pm2
   become: yes
-  command: pm2 stop all
-
+  command: pm2 stop default
+    
 - name: Start pm2
   become: yes
   command: pm2 start npm
