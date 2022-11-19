@@ -1,0 +1,24 @@
+---
+- name: "install dependencies"
+  become: yes
+  apt:
+    name: "npm"
+    state: latest
+    update_cache: yes
+
+- name: Stop pm2
+  become: yes
+  command: pm2 stop default
+
+- name: Start pm2
+  become: yes
+  command: pm2 start npm --start
+
+- name: Extract the archive file 
+unarchive:
+src: ~/project/backend/artifact.tar.gz 
+dest: . 
+keep_newer: no
+mode: 0644
+remote_src: yes
+
