@@ -407,8 +407,8 @@ jobs:
             pwd
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is --"
-            cat inventory.txt
-            ansible-playbook -i inventory.txt deploy-backend.yml
+            cat inventory1.txt
+            ansible-playbook -i inventory1.txt deploy-backend.yml
             # Here's where you will add some code to rollback on failure  
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"  
@@ -438,18 +438,18 @@ jobs:
           name: Get backend url
           command: |
             # your code here
-      - run:
-          name: Backend smoke test.
-          command: |
-            # your code here
             export BACKEND_IP=$(aws ec2 describe-instances \
               --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --region us-west-2 \
               --output text )
             echo $BACKEND_IP
-            export API_URL="http://${BACKEND_IP}:3030"
+            export API_URL="http://${BACKEND_IP}:30
             echo ${API_URL}
+      - run:
+          name: Backend smoke test.
+          command: |
+            # your code here
             if curl ${API_URL}/api/status | grep "ok"
             then
                 exit 0
