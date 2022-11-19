@@ -15,10 +15,10 @@
   command: pm2 start npm --start
 
 - name: Extract the archive file 
-  unarchive:
+  ansible.builtin.unarchive:
     src: ~/project/backend/artifact.tar.gz 
     dest: . 
-  keep_newer: no
-  mode: 0644
-  remote_src: yes
+    keep_newer: no
+    mode: 0644
+    remote_src: yes
 
