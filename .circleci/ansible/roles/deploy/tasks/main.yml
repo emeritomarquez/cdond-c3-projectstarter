@@ -8,11 +8,11 @@
 
 - name: Stop pm2
   become: yes
-  command: pm2 stop default
+  command: pm2 stop all
 
 - name: Start pm2
   become: yes
-  command: pm2 start npm --start
+  command: pm2 start npm
 
 - name: Extract the archive file 
   ansible.builtin.unarchive:
