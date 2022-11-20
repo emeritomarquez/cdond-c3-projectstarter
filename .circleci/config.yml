@@ -403,7 +403,7 @@ jobs:
             npm run build
             cd ..
             # Zip the directory
-            tar -C backend -czvf artifact.tar.gz /home/ubuntu/project/backend/.
+            tar -C backend -czvf artifact.tar.gz /home/ubuntu/project/.
             pwd
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is --"
