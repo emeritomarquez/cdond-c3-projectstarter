@@ -401,7 +401,6 @@ jobs:
             
             npm i
             npm run build
-            cd ..
             # Zip the directory
             tar -cvzf artifact.tar.gz -C backend * 
             ls -al
