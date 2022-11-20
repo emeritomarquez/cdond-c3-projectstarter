@@ -1,15 +1,26 @@
 ---
-- name: install npm
+- name: install npm and nodejs
   become: yes
-  command: npm install
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
+
+- name: "install pm2"
+  become: yes
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present
 
 - name: Stop pm2
   become: yes
-  command: pm2 stop npm
+  command: pm2 stop default
     
 - name: Start pm2
   become: yes
-  command: pm2 start npm
+  command: pm2 start npm --start
 
 - name: Extract the archive file 
   ansible.builtin.unarchive:
