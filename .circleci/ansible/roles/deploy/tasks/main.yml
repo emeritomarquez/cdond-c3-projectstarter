@@ -19,6 +19,7 @@
   command: pm2 kill 
     
 - name: Extract the archive file 
+  become: yes
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz 
     dest: ~/
