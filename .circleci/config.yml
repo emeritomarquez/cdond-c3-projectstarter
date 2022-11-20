@@ -402,7 +402,7 @@ jobs:
             npm i
             npm run build
             # Zip the directory
-            tar -cvzf artifact.tar.gz -C backend * 
+            tar -cvzf artifact.tar.gz * 
             ls -al
             pwd
             cd .circleci/ansible
