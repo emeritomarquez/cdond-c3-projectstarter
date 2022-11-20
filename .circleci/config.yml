@@ -406,6 +406,7 @@ jobs:
             tar -cvzf artifact.tar.gz backend/. 
             ls -al
             pwd
+            cp artifact.tar.gz .circleci/ansible/.
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is --"
             cat inventory1.txt
