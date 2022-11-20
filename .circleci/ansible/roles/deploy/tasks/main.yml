@@ -14,7 +14,7 @@
     production: yes
     state: present
 
-- name: Stop pm2
+- name: kill  pm2
   become: yes
   command: pm2 kill 
     
