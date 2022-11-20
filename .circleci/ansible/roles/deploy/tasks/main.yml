@@ -18,10 +18,6 @@
   become: yes
   command: pm2 stop default
     
-- name: Start pm2
-  become: yes
-  command: pm2 start npm --start
-
 - name: Extract the archive file 
   ansible.builtin.unarchive:
     src: ~/project/backend/artifact.tar.gz 
@@ -30,3 +26,6 @@
     mode: 0644
     remote_src: yes
 
+- name: Start pm2
+  become: yes
+  command: pm2 start npm --start
