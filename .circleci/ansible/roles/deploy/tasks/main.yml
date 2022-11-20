@@ -20,8 +20,8 @@
     
 - name: Extract the archive file 
   ansible.builtin.unarchive:
-    src: ~/project/backend/artifact.tar.gz 
-    dest: . 
+    src: ~/project/artifact.tar.gz 
+    dest: .~/project/backend 
     keep_newer: no
     mode: 0644
     remote_src: yes
