@@ -21,7 +21,7 @@
 - name: Extract the archive file 
   ansible.builtin.unarchive:
     src: ~/project/artifact.tar.gz 
-    dest: .~/project/
+    dest: ~/project/
     keep_newer: no
     mode: 0644
     remote_src: yes
