@@ -24,7 +24,7 @@
     dest: ~/
     keep_newer: no
     mode: 0644
-    remote_src: yes
+#    remote_src: yes
 
 - name: Start pm2
   become: yes
