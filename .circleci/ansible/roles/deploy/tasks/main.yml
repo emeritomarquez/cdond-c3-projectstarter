@@ -16,7 +16,7 @@
 
 - name: Stop pm2
   become: yes
-  command: pm2 stop all 
+  command: pm2 stop npm 
     
 - name: Extract the archive file 
   ansible.builtin.unarchive:
