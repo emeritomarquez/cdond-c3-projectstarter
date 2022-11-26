@@ -1,0 +1,32 @@
+---
+- name: install npm and nodejs
+  become: yes
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
+
+- name: "install pm2"
+  become: yes
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present
+
+- name: kill  pm2
+  become: yes
+  command: pm2 kill 
+    
+- name: Extract the archive file 
+  become: yes
+  ansible.builtin.unarchive:
+    src: ~/project/artifact.tar.gz 
+    dest: ~/project
+    keep_newer: no
+    mode: 0644
+#    remote_src: yes
+
+- name: Start pm2
+  become: yes
+  command: pm2 start npm -- start 
