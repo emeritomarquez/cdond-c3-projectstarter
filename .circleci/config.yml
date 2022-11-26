@@ -470,15 +470,15 @@ jobs:
               exit 1
             fi
             # Here's where you will add some code to rollback on failure  
-      - destroy-environment:
-          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
-          event: on_fail
-      - revert-migrations:
-          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
-      - slack/notify:
-          channel: circleci-udapeople
-          event: fail
-          template: basic_fail_1
+#      - destroy-environment:
+#          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+#          event: on_fail
+#      - revert-migrations:
+#          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+#      - slack/notify:
+#          channel: circleci-udapeople
+#          event: fail
+#          template: basic_fail_1
 
 
 #  cloudfront-update:
