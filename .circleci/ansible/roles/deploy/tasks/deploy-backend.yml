@@ -27,10 +27,4 @@
     mode: 0644
 #    remote_src: yes
 
-- name: List backend folder
-  command: ls -al ~/project/backend
-
-- name: start production
-  become: yes
-  command: "node dist/main.js"
  
