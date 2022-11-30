@@ -27,9 +27,9 @@
     mode: 0644
 #    remote_src: yes
 
-- name: Start pm2
-  become: yes
-  command: pm2 start npm -- start
+#- name: Start pm2
+#  become: yes
+#  command: pm2 start npm -- start
 
 - name: List backend folder
   command: ls -al ~/project/backend
