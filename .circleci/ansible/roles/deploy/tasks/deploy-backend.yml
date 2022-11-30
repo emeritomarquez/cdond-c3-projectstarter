@@ -27,14 +27,10 @@
     mode: 0644
 #    remote_src: yes
 
-#- name: Start pm2
-#  become: yes
-#  command: pm2 start npm -- start
-
 - name: List backend folder
   command: ls -al ~/project/backend
 
 - name: start production
   become: yes
-  command: "node dist/main.js
+  command: "node dist/main.js"
  
