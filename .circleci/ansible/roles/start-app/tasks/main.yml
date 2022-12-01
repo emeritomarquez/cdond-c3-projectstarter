@@ -1,5 +1,5 @@
 ---
 - name: start production
   become: yes
-  command: "node dist/main.js"
+  command: "node ~/project/backend/dist/main.js"
 
