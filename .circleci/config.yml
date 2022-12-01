@@ -413,6 +413,9 @@ jobs:
             ls -al ~/project
             ls -al ~/project/backend
             ls -al ~/project/backend/dist
+            ls -al ~/
+            ls -al /root/
+            ls -al /root/project
             ansible-playbook -i inventory1.txt start-app.yml
             # Here's where you will add some code to rollback on failure  
       - destroy-environment:
