@@ -44,5 +44,10 @@
 
 - name: printenv
   become: yes
-  command: printenv
+  shell: printenv
+  register: env_info
+    
+  - debug:
+    	msg: "{{env_info.stdout_lines}}"
+
 
