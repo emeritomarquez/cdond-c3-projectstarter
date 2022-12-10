@@ -375,14 +375,14 @@ jobs:
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is --"
             cat inventory1.txt
-            ansible-playbook -i inventory1.txt deploy-backend.yml
+            ansible-playbook -i inventory1.txt deploy-backend.yml --private-key=udapeople.pem
             ls -al ~/project
             ls -al ~/project/backend
             ls -al ~/project/backend/dist
             ls -al ~/
             ls -al /root/
             ls -al /root/project
-            ansible-playbook -i inventory1.txt start-app.yml
+            ansible-playbook -i inventory1.txt start-app.yml --private-key=udapeople.pem
             # Here's where you will add some code to rollback on failure  
 #      - destroy-environment:
 #          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"  
