@@ -19,19 +19,27 @@
   command: pm2 kill 
 
 - name: "Where am I?"
-  command: pwd
+  shell: pwd
+  register: pwd_info
+
+- debug:
+        msg: "{{pwd_info.stdout_lines}}"
 
 - name: "List current folder"
-  command: ls -al
+  shell: ls -al
+  register: ls_info
+
+- debug:
+        msg: "{{ls_info.stdout_lines}}"
 
 - name: Create project folders
     file:
       path: "{{ item }}"
       state: directory
   with_items:
-  - ~/project
-  - ~/project/.circleci/
-  - ~/project/.circleci/ansible
+    - ~/project
+    - ~/project/.circleci/
+    - ~/project/.circleci/ansible
 
 - name: Extract the archive file 
   become: yes
@@ -47,7 +55,7 @@
   shell: printenv
   register: env_info
     
-  - debug:
+- debug:
     	msg: "{{env_info.stdout_lines}}"
 
 
