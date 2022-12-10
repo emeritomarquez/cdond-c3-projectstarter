@@ -1,23 +1,38 @@
 ---
-- name: install npm and nodejs
-  become: yes
-  apt:
-    name: ["nodejs", "npm"]
-    state: latest
-    update_cache: yes
+#- name: install npm and nodejs
+#  become: yes
+#  apt:
+#    name: ["nodejs", "npm"]
+#    state: latest
+#    update_cache: yes
 
-- name: "install pm2"
-  become: yes
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: present
+#- name: "install pm2"
+#  become: yes
+#  npm:
+#    name: pm2
+#    global: yes
+#    production: yes
+#    state: present
 
 - name: kill  pm2
   become: yes
   command: pm2 kill 
-    
+
+- name: "Where am I?"
+  command: pwd
+
+- name: "List current folder"
+  command: ls -al
+
+- name: Create project folders
+    file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - ~/project
+  - ~/project/.circleci/
+  - ~/project/.circleci/ansible
+
 - name: Extract the archive file 
   become: yes
   ansible.builtin.unarchive:
@@ -26,6 +41,7 @@
     keep_newer: no
     mode: 0644
 #    remote_src: yes
+
 - name: printenv
   become: yes
   command: printenv
