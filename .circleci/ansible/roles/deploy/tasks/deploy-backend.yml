@@ -33,13 +33,13 @@
         msg: "{{ls_info.stdout_lines}}"
 
 - name: Create project folders
-    file:
-      path: "{{ item }}"
-      state: directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
   with_items:
-    - ~/project
-    - ~/project/.circleci/
-    - ~/project/.circleci/ansible
+  - ~/project
+  - ~/project/.circleci/
+  - ~/project/.circleci/ansible
 
 - name: Extract the archive file 
   become: yes
