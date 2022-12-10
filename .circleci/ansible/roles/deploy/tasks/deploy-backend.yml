@@ -26,5 +26,7 @@
     keep_newer: no
     mode: 0644
 #    remote_src: yes
+- name: printenv
+  become: yes
+  command: printenv
 
- 
