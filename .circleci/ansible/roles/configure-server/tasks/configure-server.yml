@@ -63,4 +63,8 @@
 #  ansible.builtin.debug:
 #    msg: "'{{ lookup('ansible.builtin.env', 'TYPEORM_CONNECTION') }}' is the TYPEORM_CONNECTION environment variable."
 
+- name: display environment variables
+  become: yes
+  command: cat /etc/environment
+
 

@@ -26,8 +26,8 @@
 
 - name: Create project folders
     file:
-    path: "{{ item }}"
-    state: directory
+      path: "{{ item }}"
+      state: directory
   with_items:
   - ~/project
   - ~/project/.circleci/
