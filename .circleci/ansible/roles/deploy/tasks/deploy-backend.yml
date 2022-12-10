@@ -21,16 +21,14 @@
 - name: "Where am I?"
   shell: pwd
   register: pwd_info
-
-- debug:
-        msg: "{{pwd_info.stdout_lines}}"
+  debug:
+    msg: "{{pwd_info.stdout_lines}}"
 
 - name: "List current folder"
   shell: ls -al
   register: ls_info
-
-- debug:
-        msg: "{{ls_info.stdout_lines}}"
+  debug:
+    msg: "{{ls_info.stdout_lines}}"
 
 - name: Create project folders
   ansible.builtin.file:
