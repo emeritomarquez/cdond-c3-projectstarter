@@ -27,7 +27,8 @@
 - name: "List current folder"
   shell: ls -al
   register: ls_info
-  debug:
+
+- debug:
     msg: "{{ls_info.stdout_lines}}"
 
 - name: Create project folders
@@ -35,15 +36,15 @@
     path: "{{ item }}"
     state: directory
   with_items:
-  - ~/project
-  - ~/project/.circleci/
-  - ~/project/.circleci/ansible
+  - /root/project
+  - /root/project/.circleci/
+  - /root/project/.circleci/ansible
 
 - name: Extract the archive file 
   become: yes
   ansible.builtin.unarchive:
-    src: ~/project/artifact.tar.gz 
-    dest: ~/project
+    src: /root/project/artifact.tar.gz 
+    dest: /root//project
     keep_newer: no
     mode: 0644
 #    remote_src: yes
@@ -54,6 +55,6 @@
   register: env_info
     
 - debug:
-    	msg: "{{env_info.stdout_lines}}"
+    msg: "{{env_info.stdout_lines}}"
 
 

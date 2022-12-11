@@ -66,6 +66,7 @@
 - name: display environment variables
   shell: "cat /etc/environment"
   register: os_info
-  debug:
+
+- debug:
     msg: "{{os_info.stdout_lines}}"
 
