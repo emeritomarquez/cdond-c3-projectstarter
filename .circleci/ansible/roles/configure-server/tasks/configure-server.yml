@@ -76,15 +76,13 @@
 
 - name: print environment variables II
   ansible.builtin.debug: msg = " {{ item }} "
-  with_lines: printenv
+  with_items: printenv
 
 - name: print environment variables III
-  ansible.builtin.shell:
-    cmd: printenv
+  ansible.builtin.shell: printenv
 
 - name: print environment variables IV
-  ansible.builtin.shell:
-    cmd: "echo ' ^{{ os_environment.key }} = {{ os_environment.value }} '"
+  ansible.builtin.shell: "echo ' ^{{ os_environment.key }} = {{ os_environment.value }} '"
     
 
 
