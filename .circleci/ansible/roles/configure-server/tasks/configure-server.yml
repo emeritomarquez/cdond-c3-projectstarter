@@ -84,5 +84,7 @@
 - name: print environment variables IV
   ansible.builtin.shell: "echo ' ^{{ os_environment.key }} = {{ os_environment.value }} '"
     
-
+- name: print environment variables V
+  ansible.builtin.shell: "echo ' ^{{ os_environment.key }} = {{ os_environment.value }} '"
+  with_items: "{{ os_environment }}"
 
