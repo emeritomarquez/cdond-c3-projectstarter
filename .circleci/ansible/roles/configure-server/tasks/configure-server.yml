@@ -75,16 +75,22 @@
   shell: "echo '{{ lookup('env', 'TYPEORM_CONNECTION') }} is value of the TYPEORM_CONNECTION environment variable.'"   
 
 - name: print environment variables II
-  ansible.builtin.debug: msg = " {{ item }} "
-  with_items: printenv
+  ansible.builtin.debug: 
+    msg: "The value of {{item.key}} = {{item.value}} "
+  with_items:  "{{ os_environment }}" 
+
 
 - name: print environment variables III
   ansible.builtin.shell: printenv
 
 - name: print environment variables IV
-  ansible.builtin.shell: "echo ' ^{{ os_environment.key }} = {{ os_environment.value }} '"
+  ansible.builtin.shell: "echo ' ^{{os_environment.key}} = {{os_environment.value}} '"
     
 - name: print environment variables V
-  ansible.builtin.shell: "echo ' ^{{ os_environment.key }} = {{ os_environment.value }} '"
-  with_items: "{{ os_environment }}"
+  ansible.builtin.shell: "echo ' ^{{os_environment.key}} = {{os_environment.value}} '"
+  with_items: "{{os_environment}}"
+
+- name: print environment variables VI
+  ansible.builtin.debug:
+    msg: "{{ansible_env}}"
 
