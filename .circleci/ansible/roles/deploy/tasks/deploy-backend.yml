@@ -36,9 +36,8 @@
     path: "{{ item }}"
     state: directory
   with_items:
-  - /root/project
-  - /root/project/.circleci/
-  - /root/project/.circleci/ansible
+  - .circleci
+  - .circleci/ansible
 
 - name: Extract the archive file 
   become: yes
