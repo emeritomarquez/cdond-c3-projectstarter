@@ -47,10 +47,10 @@
   become: yes
   ansible.builtin.unarchive:
     src: /root/project/artifact.tar.gz 
-    dest: /root//project
+    dest: /home/ubuntu
     keep_newer: no
     mode: 0644
-#    remote_src: yes
+    remote_src: yes
 
 - name: printenv
   become: yes
