@@ -31,13 +31,17 @@
 - debug:
     msg: "{{ls_info.stdout_lines}}"
 
+- name: "sudo su -"
+  become: true
+  shell: sudo su -
+
 - name: Create project folders
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
   with_items:
-  - .circleci
-  - .circleci/ansible
+  - project/.circleci
+  - project/.circleci/ansible
 
 - name: Extract the archive file 
   become: yes
