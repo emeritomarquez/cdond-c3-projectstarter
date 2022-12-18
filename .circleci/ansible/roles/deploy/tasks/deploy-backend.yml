@@ -38,12 +38,12 @@
 - name: Create project folders
   ansible.builtin.file:
     state: directory
-    dest: "{{ item }}"
-  with_items:
-  - ~/project/
-  - ~/project/backend
-  - ~/project/.circleci
-  - ~/project/.circleci/ansible
+    dest: ~/project/
+#  with_items:
+#  - ~/project/
+#  - ~/project/backend
+#  - ~/project/.circleci
+#  - ~/project/.circleci/ansible
 
 - name: Extract the archive file 
   ansible.builtin.unarchive:
