@@ -51,7 +51,7 @@
 #  - ~/project/.circleci/ansible
 
 - name: Extract the archive file 
-  ansible.builtin.unarchive:
+  unarchive:
     src: /root/project/artifact.tar.gz 
     dest: /home/{{ ansible_user}}/
     keep_newer: no
