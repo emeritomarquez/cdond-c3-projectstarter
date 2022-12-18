@@ -37,20 +37,21 @@
 
 - name: Create project folders
   ansible.builtin.file:
-    path: "{{ item }}"
     state: directory
+    dest: "{{ item }}"
   with_items:
-  - project/.circleci
-  - project/.circleci/ansible
+  - ~/project/
+  - ~/project/backend
+  - ~/project/.circleci
+  - ~/project/.circleci/ansible
 
 - name: Extract the archive file 
-  become: yes
   ansible.builtin.unarchive:
     src: /root/project/artifact.tar.gz 
-    dest: /home/ubuntu
+    dest: ~/project/backend
     keep_newer: no
     mode: 0644
-    remote_src: yes
+#    remote_src: yes
 
 - name: printenv
   become: yes
