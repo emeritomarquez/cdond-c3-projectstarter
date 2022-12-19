@@ -18,51 +18,70 @@
   become: yes
   command: pm2 kill 
 
-- name: printenv
-  become: yes
-  shell: printenv
-  register: env_info
+#- name: printenv
+#  become: yes
+#  shell: printenv
+#  register: env_info
 
-- debug:
-    msg: "{{env_info.stdout_lines}}"
+#- debug:
+#    msg: "{{env_info.stdout_lines}}"
 
-- name: Create a text file in opt directory using /bin/sh shell
-  ansible.builtin.shell: echo "I am creating a new file" > /home/{{ ansible_user}}/new_file.txt
-  become: true   
+#- name: Create a text file in opt directory using /bin/sh shell
+#  ansible.builtin.shell: echo "I am creating a new file" > /home/{{ ansible_user}}/new_file.txt
+#  become: true   
 
-- name: "Where am I?"
-  ansible.builtin.shell: pwd
-  register: pwd_info
-  debug:
-    msg: "{{pwd_info.stdout_lines}}"
+#- name: "Where am I?"
+#  ansible.builtin.shell: pwd
+#  register: pwd_info
+#  debug:
+#    msg: "{{pwd_info.stdout_lines}}"
 
-- name: "List current folder"
-  ansible.builtin.shell: ls -al
-  register: ls_info
+#- name: "List current folder"
+#  ansible.builtin.shell: ls -al
+#  register: ls_info
 
-- debug:
-    msg: "{{ls_info.stdout_lines}}"
+#- debug:
+#    msg: "{{ls_info.stdout_lines}}"
 
-- name: "sudo su -"
-  become: true
-  ansible.builtin.shell: sudo su -
+#- name: "sudo su -"
+#  become: true
+#  ansible.builtin.shell: sudo su -
 
-- name: create root/project folder
-  become: true
-  ansible.builtin.shell: mkdir /root/project
+#- name: create root/project folder
+#  become: true
+#  ansible.builtin.shell: mkdir /root/project
 
-- name: Create project folders
-  ansible.builtin.file:
-    state: directory
-    dest: {{ item}}
-  with_items:
-  - /home/ubuntu/project/
-  - /home/ubuntu/project/backend
+#- name: Create project folders
+#  ansible.builtin.file:
+#    state: directory
+#    dest: {{ item}}
+#  with_items:
+#  - /home/ubuntu/project/
+#  - /home/ubuntu/project/backend
 
-- name: Extract the archive file 
-  ansible.builtin.unarchive:
-    src: /root/project/artifact.tar.gz 
-    dest: /home/{{user}}/
-    keep_newer: no
-    mode: 0644
+#- name: Extract the archive file 
+#  ansible.builtin.unarchive:
+#    src: /root/project/artifact.tar.gz 
+#    dest: /home/{{user}}/
+#    keep_newer: no
+#    mode: 0644
 #    remote_src: yes
+
+
+- name: create directory 
+  become: true
+  file: 
+    path: /home/ubuntu/web
+    state: directory
+    mode: 0755
+- name: copy artifact
+  become: true
+  copy: 
+    src: ~/project/artifact.tar.gz
+    dest: /home/ubuntu/web/artifact.tar.gz
+- name: Extract artifact files
+  become: true
+  shell: |
+    cd /home/ubuntu/web
+    tar -xvf artifact.tar.gz
+
