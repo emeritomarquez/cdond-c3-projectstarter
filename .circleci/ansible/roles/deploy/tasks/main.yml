@@ -1,32 +1,22 @@
 ---
-- name: install npm and nodejs
-  become: yes
-  apt:
-    name: ["nodejs", "npm"]
-    state: latest
-    update_cache: yes
-
-- name: "install pm2"
-  become: yes
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: present
-
 - name: kill  pm2
   become: yes
   command: pm2 kill 
-    
-- name: Extract the archive file 
-  become: yes
-  ansible.builtin.unarchive:
-    src: ~/project/artifact.tar.gz 
-    dest: ~/project/
-    keep_newer: no
-    mode: 0644
-#    remote_src: yes
 
-- name: print env
-  become: yes
-  command: printenv
+- name: create directory 
+  become: true
+  file: 
+    path: /home/ubuntu/web
+    state: directory
+    mode: 0755
+- name: copy artifact
+  become: true
+  copy: 
+    src: ~/project/artifact.tar.gz
+    dest: /home/ubuntu/web/artifact.tar.gz
+- name: Extract artifact files
+  become: true
+  shell: |
+    cd /home/ubuntu/web
+    tar -xvf artifact.tar.gz
+
