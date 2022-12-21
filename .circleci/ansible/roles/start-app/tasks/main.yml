@@ -1,0 +1,24 @@
+---
+
+- name: ls command1
+  command: ls -al ~/project
+
+- name: ls command2
+  command: ls -al ~/project/backend
+
+- name: ls command3
+  command: ls -al ~/project/backend/dist
+
+- name: ls command4
+  command: ls -al ~/
+
+- name: ls command5
+  command: ls -al root/
+
+- name: ls command6
+  command: ls -al root/project
+
+- name: start production
+  become: yes
+  command: "node ~/project/backend/dist/main.js"
+
