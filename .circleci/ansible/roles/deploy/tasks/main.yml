@@ -1,0 +1,24 @@
+---
+- name: kill  pm2
+  become: yes
+  command: pm2 kill
+
+- name: create directory
+  become: true
+  file:
+    path: /home/ubuntu/web
+    state: directory
+    mode: 0755
+- name: copy artifact
+  become: true
+  copy:
+    src: ~/project/artifact.tar.gz
+    dest: /home/ubuntu/web/artifact.tar.gz
+
+- name: Extract artifact files
+  become: true
+  shell: |
+    cd /home/ubuntu/web
+    tar -xvf artifact.tar.gz
+
+
