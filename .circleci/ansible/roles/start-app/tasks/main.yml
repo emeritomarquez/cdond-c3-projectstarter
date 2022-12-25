@@ -1,7 +1,11 @@
 ---
 
 - name: ls command1
-  command: ls -al ~/
+  shell: ls -al ~/
+  register: ls_info
+  
+- debug:
+    msg: " {{ls_info.stdout_lines }}"
 
 - name: ls command2
   command: ls -al root/
