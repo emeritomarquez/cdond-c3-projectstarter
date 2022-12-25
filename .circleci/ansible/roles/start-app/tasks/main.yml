@@ -1,28 +1,25 @@
 ---
 
 - name: ls command1
-  shell: ls -al ~/
+  shell: ls -al /home/ubuntu/ 
   register: ls_info
   
 - debug:
     msg: " {{ls_info.stdout_lines }}"
 
 - name: ls command2
-  command: ls -al root/
+  command: ls -al /home/ubuntu/web
+  register: ls_info
 
 - name: ls command3
-  command: ls -al ~/project/backend/
+  shell: ls -al /home/ubuntu/web/backend/
+  register: ls_info
 
 - name: ls command4
-  command: ls -al ~/project/backend/dist
-
-- name: ls command5
-  command: ls -al root/
-
-- name: ls command6
-  command: ls -al root/project
+  shell: ls -al /home/ubuntu/web/backend/dist
+  register: ls_info
 
 - name: start production
   become: yes
-  command: "node ~/project/backend/dist/main.js"
+  command: "node /home/ubuntu/web/backend/dist/main.js"
 
