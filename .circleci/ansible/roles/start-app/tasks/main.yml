@@ -1,16 +1,16 @@
 ---
 
 - name: ls command1
-  command: ls -al ~/project
+  command: ls -al ~/
 
 - name: ls command2
-  command: ls -al ~/project/backend
+  command: ls -al root/
 
 - name: ls command3
-  command: ls -al ~/project/backend/dist
+  command: ls -al ~/project/backend/
 
 - name: ls command4
-  command: ls -al ~/
+  command: ls -al ~/project/backend/dist
 
 - name: ls command5
   command: ls -al root/
