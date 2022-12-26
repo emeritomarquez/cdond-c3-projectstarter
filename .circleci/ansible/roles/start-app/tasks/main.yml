@@ -34,6 +34,6 @@
   register: startprod_info
 
 - debug:
-  msg: " {{startprod_info.stdout_lines }}"
+    msg: " {{startprod_info.stdout_lines }}"
 
 
