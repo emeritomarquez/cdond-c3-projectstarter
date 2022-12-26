@@ -31,4 +31,9 @@
 - name: start production
   become: yes
   command: "node /home/ubuntu/web/backend/dist/main.js"
+  register: mainjs_info
+
+- debug:
+    msg: " {{mainjs_info.stdout_lines }}"
+
 
