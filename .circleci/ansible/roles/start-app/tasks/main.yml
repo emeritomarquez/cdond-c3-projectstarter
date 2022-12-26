@@ -30,10 +30,11 @@
 
 - name: start production
   become: yes
-  command: "node /home/ubuntu/web/backend/dist/main.js"
-  register: mainjs_info
+    #  command: "node /home/ubuntu/web/backend/dist/main.js"
+  shell: pm2 start npm --start
+  register: npmstart_info
 
 - debug:
-    msg: " {{mainjs_info.stdout_lines }}"
+    msg: " {{npmstart_info.stdout_lines }}"
 
 
