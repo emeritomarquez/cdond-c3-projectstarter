@@ -1,33 +1,5 @@
 ---
 
-- name: ls command1
-  shell: ls -al /home/ubuntu/ 
-  register: ls_info
-  
-- debug:
-    msg: " {{ls_info.stdout_lines }}"
-
-- name: ls command2
-  command: ls -al /home/ubuntu/web
-  register: ls2_info
-
-- debug:
-    msg: " {{ls2_info.stdout_lines }}"
-
-- name: ls command3
-  shell: ls -al /home/ubuntu/web/backend/
-  register: ls3_info
-
-- debug:
-    msg: " {{ls3_info.stdout_lines }}"
-
-- name: ls command4
-  shell: ls -al /home/ubuntu/web/backend/dist
-  register: ls4_info
-
-- debug:
-    msg: " {{ls4_info.stdout_lines }}"
-
 - name: start production
   become: yes
   command: "node /home/ubuntu/web/backend/dist/main.js"
