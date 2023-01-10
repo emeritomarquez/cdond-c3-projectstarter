@@ -8,12 +8,3 @@
     pm2 start npm -- start
 
 
-
-#- name: start production
-#  become: yes
-#  command: "node /home/ubuntu/web/backend/dist/main.js"
-#  register: startprod_info
-
-#- debug:
-#    msg: " {{startprod_info.stdout_lines }}"
-
