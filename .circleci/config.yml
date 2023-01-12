@@ -401,7 +401,7 @@ jobs:
             # your code here
             sudo apt install curl
       - run:
-          name: Get backend url
+          name: Get backend url and Backend smoke test.
           command: |
             # your code here
             export BACKEND_IP=$(aws ec2 describe-instances \
@@ -414,10 +414,6 @@ jobs:
             echo ${API_URL}
             echo ${API_URL}/api/status
             curl  ${API_URL}/api/status
-      - run:
-          name: Backend smoke test.
-          command: |
-            # your code here
             if curl ${API_URL}/api/status | grep "ok"
             then
                 exit 0
