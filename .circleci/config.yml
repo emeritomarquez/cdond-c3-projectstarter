@@ -274,9 +274,7 @@ jobs:
           command: |
             cd backend
             npm install
-#            npm run build
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
-#            ls -al ~/project/.circleci/ansible/
             cat ~/project/.circleci/ansible/migrations_dump.txt
             cat ~/project/.circleci/ansible/migrations_err.txt
 #            python3 ~/project/.circleci/scratch-code/get_dump_files.py ~/project/.circleci/ansible/migrations_err.txt
