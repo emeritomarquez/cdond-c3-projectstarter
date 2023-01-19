@@ -57,6 +57,9 @@ for line in lines:
 #Ubuntu122.04 Public
     elif line == "34.208.236.63\n":
         pass
+#typeorm2
+    elif line == "54.149.54.106\n":
+        pass
 #Cloud9 Public
     elif line == "54.200.203.86\n":
         pass
