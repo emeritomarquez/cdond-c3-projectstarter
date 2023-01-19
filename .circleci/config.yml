@@ -277,7 +277,6 @@ jobs:
             npm run migrations > ~/project/.circleci/ansible/migrations_dump.txt 2> ~/project/.circleci/ansible/migrations_err.txt
             cat ~/project/.circleci/ansible/migrations_dump.txt
             cat ~/project/.circleci/ansible/migrations_err.txt
-            cat /home/circleci/.npm/_logs/2023-01-14T18_06_18_102Z-debug.log
 #            python3 ~/project/.circleci/scratch-code/get_dump_files.py ~/project/.circleci/ansible/migrations_err.txt
       - run:
           name: Send migration status to kvdb.io OR memstash.io
