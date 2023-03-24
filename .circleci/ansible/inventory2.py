@@ -55,13 +55,13 @@ for line in lines:
     elif line == "35.91.84.17\n":
         pass
 #Ubuntu122.04 Public
-    elif line == "35.90.201.199\n":
+    elif line == "34.215.123.117\n":
         pass
 #typeorm2
     elif line == "54.149.54.106\n":
         pass
 #Cloud9 Public
-    elif line == "35.88.46.123\n":
+    elif line == "35.87.69.23\n":
         pass
 #Windows MySQL
     elif line == "35.86.145.45\n":
