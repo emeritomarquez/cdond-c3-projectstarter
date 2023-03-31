@@ -459,10 +459,9 @@ jobs:
             echo workflow id: "${CIRCLE_WORKFLOW_ID:0:7}"
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
-          event: fail
+          event: on_fail
       - revert-migrations:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}" 
-          event: fail
 
 #cleanup:
 #    docker:
