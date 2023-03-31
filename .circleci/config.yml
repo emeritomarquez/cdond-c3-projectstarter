@@ -438,20 +438,32 @@ jobs:
           template: basic_fail_1
 
 
-#  cloudfront-update:
-#    docker:
-      # Docker image here that supports AWS CLI
-#    steps:
-      # Checkout code from git
-#      - run:
-#          name: Install dependencies
-#          command: |
+  cloudfront-update:
+    docker:
+      - image: amazon/aws-cli     # Docker image here that supports AWS CLI
+    steps:
+      - checkout      # Checkout code from git
+      - run:
+          name: Install dependencies
+          command: |
             # your code here
-#      - run:
-#          name: Update cloudfront distribution
-#          command: |
+            yum -y install tar 
+            yum -y install gzip
+      - run:
+          name: Update cloudfront distribution
+          command: |
             # your code here
+            aws cloudformation deploy \
+              --template-file .circleci/files/cloudfront.yml \
+              --stack-name InitialStack \
+              --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}" \
+              --tags project=udapeople
+            echo workflow id: "${CIRCLE_WORKFLOW_ID:0:7}"
       # Here's where you will add some code to rollback on failure  
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      - revert-migrations:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}" 
 
 #cleanup:
 #    docker:
@@ -507,8 +519,8 @@ workflows:
           requires: [run-migrations]
       - smoke-test:
           requires: [deploy-backend, deploy-frontend]
-#      - cloudfront-update:
-#          requires: [smoke-test]
+      - cloudfront-update:
+          requires: [smoke-test]
 #      - cleanup:
 #         requires: [cloudfront-update]
 
