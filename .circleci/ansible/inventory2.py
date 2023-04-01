@@ -58,7 +58,7 @@ for line in lines:
     elif line == "35.167.212.86\n":
         pass
 #typeorm2
-    elif line == "54.149.54.106\n":
+    elif line == "54.213.45.43\n":
         pass
 #Cloud9 Public
     elif line == "35.87.69.23\n":
