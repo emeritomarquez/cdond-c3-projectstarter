@@ -370,15 +370,15 @@ jobs:
             ansible-playbook -i inventory1.txt ~/project/.circleci/ansible/deploy-backend.yml --private-key=~/project/.circleci/ansible/udapeople.pem
             ansible-playbook -i inventory1.txt ~/project/.circleci/ansible/start-app.yml --private-key=~/project/.circleci/ansible/udapeople.pem
             # Here's where you will add some code to rollback on failure  
-#      - destroy-environment:
-#          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"  
-#          event: on_fail
-#      - revert-migrations:
-#         workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}" 
-#      - slack/notify:
-#          channel: circleci-udapeople
-#          event: fail
-#          template: basic_fail_1
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"  
+          event: on_fail
+      - revert-migrations:
+         workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}" 
+      - slack/notify:
+          channel: circleci-udapeople
+          event: fail
+          template: basic_fail_1
 
   smoke-test:
     docker:
