@@ -410,7 +410,7 @@ jobs:
             curl  ${API_URL}/api/status
             if curl ${API_URL}/api/status | grep "ok"
             then
-                exit 0
+                exit 1
             else
                 exit 1
             fi
