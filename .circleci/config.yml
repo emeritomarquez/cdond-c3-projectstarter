@@ -453,9 +453,7 @@ jobs:
             aws cloudformation update \
               --template-file .circleci/files/cloudfront.yml \
               --stack-name udapeopleStack \
-              --parameter-overrides WorkflowID=${WorkflowID}.s3.amazonaws.com \
-              --tags project=udapeople \
-             --region us-east-1
+              --parameter-overrides WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}.s3.amazonaws.com
           echo workflow id: "${CIRCLE_WORKFLOW_ID:0:7}"
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
