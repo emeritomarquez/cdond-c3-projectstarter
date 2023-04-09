@@ -450,7 +450,7 @@ jobs:
       - run:
           name: Update cloudfront distribution
           command: |
-            aws cloudformation deploy \
+            aws cloudformation update \
               --template-file .circleci/files/cloudfront.yml \
               --stack-name udapeopleStack \
               --parameter-overrides WorkflowID=${WorkflowID}.s3.amazonaws.com \
