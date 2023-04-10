@@ -471,15 +471,15 @@ jobs:
           command: |
             yum -y install tar 
             yum -y install gzip
-      - run:
-          name: Get old id and Remove old stacks and files
-          command: |
-            export OldWorkflowId=$(aws cloudformation \
-              list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-              --no-paginate --output text)
-            export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
-              --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
-            echo Stack names: "${STACKS[@]}"  
+#      - run:
+#          name: Get old id and Remove old stacks and files
+#          command: |
+#            export OldWorkflowId=$(aws cloudformation \
+#              list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
+#              --no-paginate --output text)
+#            export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
+#              --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
+#            echo Stack names: "${STACKS[@]}"  
 #            if [[ "${OldWorkflowId}" =~ "${STACKS[@]}"  ]]
 #            then
 #              echo "Cleaning in progress"
