@@ -481,7 +481,6 @@ jobs:
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
             echo Stack names: "${STACKS[@]}"  
             if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
-#            if [[ "${OldWorkflowId}" =~ "${STACKS[@]}"  ]]
             then
               echo "Cleaning in progress"
               echo old workflow id: "${OldWorkflowId}"
