@@ -474,7 +474,7 @@ jobs:
       - run:
           name: Get old id and Remove old stacks and files
           command: |
-            export OldWorkflowId=$(aws cloudformation \
+            export OldWorkflowID=kk1j287dhjppmz591
               list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
               --no-paginate --output text)
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
@@ -485,9 +485,9 @@ jobs:
               echo "Cleaning in progress"
               echo old workflow id: "${OldWorkflowId}"
               echo current workflow id: "${CIRCLE_WORKFLOW_ID:0:7}"
-              aws s3 rm "s3://udapeople-${OldWorkflowId}" --recursive
-              aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowId}"
-              aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowId}"
+              aws s3 rm "s3://udapeople-${OldWorkflowId}" --recursive --include "*" --include "images/*"
+#              aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowId}"
+#              aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowId}"
               echo "Cleaning Done"
             else
               echo "No cleanup required---"
