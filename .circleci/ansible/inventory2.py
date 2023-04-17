@@ -52,29 +52,27 @@ for line in lines:
     elif line == "172.31.20.231\n":
         pass
 #Windows AWS Work Machine Public
-    elif line == "54.185.241.135\n":
+    elif line == "52.41.148.165\n":
         pass
 #Ubuntu122.04 Public
-    elif line == "18.237.251.193\n":
+    elif line == "18.237.184.139\n":
         pass
 #typeorm2
     elif line == "54.213.45.43\n":
         pass
 #Cloud9 Public
-    elif line == "35.87.69.23\n":
+    elif line == "35.93.84.240\n":
         pass
 #Windows MySQL
-    elif line == "35.86.145.45\n":
-        pass
-#Cloud9 IDE
-    elif line == "44.229.42.160\n":
+    elif line == "18.237.95.113\n":
         pass
     else:
         rows.append(line)
-
 
 print(rows)
 g = open(sys.argv[2], 'w+')
 for element in rows:
     g.write(element)
+g.write(element)
 g.close()
+
