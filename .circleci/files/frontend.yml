@@ -11,6 +11,8 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub "udapeople-${ID}"
+      PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
       OwnershipControls:
         Rules:
           - ObjectOwnership: ObjectWriter
