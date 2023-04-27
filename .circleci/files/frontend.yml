@@ -12,6 +12,9 @@ Resources:
     Properties:
       BucketName: !Sub "udapeople-${ID}"
       AccessControl: PublicRead
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
