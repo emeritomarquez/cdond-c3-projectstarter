@@ -474,7 +474,7 @@ jobs:
       - run:
           name: Get old id and Remove old stacks and files
           command: |
-            export OldWorkflowID="ddc0b1e"
+            export OldWorkflowID="85f4823"
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
             echo Stack names: "${STACKS[@]}"  
@@ -527,5 +527,5 @@ workflows:
           requires: [deploy-backend, deploy-frontend]
       - cloudfront-update:
           requires: [smoke-test]
-#      - cleanup:
-#          requires: [cloudfront-update]
+      - cleanup:
+          requires: [cloudfront-update]
